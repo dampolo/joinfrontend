@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add Task</title>
+    <link rel="stylesheet" href="./styles/add_task.css" />
+    <link rel="shortcut icon" href="assets/favicon.svg" />
+  </head>
+  <body onload="initAddTask()">
+    <div id="toastContainer" class="toast-container">
+      <div id="toastMessage" class="toast-message"></div>
+    </div>
+
+    <header w3-include-html="templates/header.html"></header>
+    <aside w3-include-html="templates/menu.html"></aside>
+
+    <div class="container add-task" w3-include-html="templates/add_task.html"></div>
+
+    <script src="./scripts/storage.js"></script>
+    <script src="./scripts/users_remote.js"></script>
+    <script src="./scripts/tasks_remote.js"></script>
+    <script src="./scripts/contacts_remote.js"></script>
+    <script src="./scripts/script.js"></script>
+    <script src="./scripts/contacts.js"></script>
+    <script src="./scripts/add_task.js"></script>
+    <script src="./scripts/add_task_support.js"></script>
+  </body>
+</html>

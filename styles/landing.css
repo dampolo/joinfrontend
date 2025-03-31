@@ -1,0 +1,243 @@
+@import "reset.css";
+@import "styles.css";
+
+html {
+  height: 100%;
+}
+
+body {
+  height: 100%;
+  margin: 0 auto;
+  display: block;
+}
+
+#logo {
+  position: absolute;
+  top: calc(50% - 137px);
+  left: calc(50% - 165px);
+  z-index: 1002;
+  transition: all 0.5s ease-in-out;
+  width: 274px;
+  height: 330px;
+  background-image: url("../assets/img/logo-dark.svg");
+  background-size: cover;
+}
+
+#logo.fixed {
+  position: absolute;
+  top: 80px;
+  left: 80px;
+  width: 100px;
+  height: 121px;
+}
+
+#backdrop {
+  position: fixed;
+  background-color: var(--body-bg);
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 1001;
+  opacity: 1;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.container {
+  position: relative;
+  min-height: 100%;
+  padding: 80px 80px 40px 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 16px;
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+header {
+  display: flex;
+  justify-content: flex-end;
+  align-items: start;
+  min-height: 40px;
+}
+
+header .signup-link {
+  display: flex;
+  gap: 35px;
+  align-items: center;
+}
+
+main {
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+}
+
+main .card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  background-color: #fff;
+  border-radius: 32px;
+  padding: 48px 115px;
+  min-width: 650px;
+  box-shadow: 0 0 14px 3px rgba(0, 0, 0, 0.04);
+}
+
+main .card .arrow-back {
+  position: absolute;
+  top: 64px;
+  left: 48px;
+}
+
+main .card .arrow-back:hover {
+  background-color: var(--light-gray);
+  border-radius: 50%;
+}
+
+main .card .header {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
+}
+
+main .card .header h1 {
+  font-weight: bold;
+  font-size: 60px;
+  line-height: 73px;
+}
+
+main .card .header .line {
+  display: block;
+  height: 3px;
+  background-color: var(--light-blue);
+  width: 150px;
+}
+
+main .card .form form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+main .card .form form .checkbox-wrapper {
+  margin: 16px 0;
+  display: flex;
+  gap: 8px;
+  color: var(--gray);
+}
+
+main .card .form form .checkbox-wrapper.privacy-policy {
+  justify-content: center;
+  align-items: center;
+}
+
+main .card .form form .checkbox-wrapper.remember {
+  margin-left: 40px;
+}
+
+main .card .buttons {
+  display: flex;
+  gap: 35px;
+  justify-content: center;
+}
+
+main .card .buttons .button {
+  font-weight: bold;
+  font-size: 21px;
+  line-height: 25px;
+}
+
+footer {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+}
+
+footer a {
+  font-size: 16px;
+  padding: 8px;
+  color: var(--sidenav-link-color-dark);
+  text-decoration: none;
+}
+
+footer a:hover {
+  font-size: 16px;
+  padding: 8px;
+  color: var(--light-blue);
+  font-weight: bold;
+  text-decoration: none;
+}
+
+@media (max-width: 1150px) {
+  #backdrop {
+    background-color: var(--primary);
+  }
+
+  .container {
+    padding: 16px;
+  }
+
+  #logo {
+    top: calc(50% - 50px);
+    left: calc(50% - 60px);
+    width: 100px;
+    height: 120px;
+    background-image: url("../assets/img/logo.svg");
+  }
+
+  #logo.fixed {
+    top: 40px;
+    left: 40px;
+    background-image: url("../assets/img/logo-dark.svg");
+    width: 64px;
+    height: 78px;
+  }
+
+  header {
+    min-height: 110px;
+  }
+
+  main .card {
+    min-width: 100%;
+    padding: 32px 16px;
+  }
+
+  main .card .arrow-back {
+    top: 48px;
+    left: 32px;
+  }
+
+  main .card .buttons {
+    gap: 21px;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  main .card .buttons .button {
+    min-width: 180px;
+    justify-content: center;
+    font-size: 16px;
+    line-height: 19.2px;
+  }
+
+  main .card .header h1 {
+    font-size: 40px;
+    line-height: 53px;
+  }
+
+  main .card .header .line {
+    width: 88px;
+  }
+
+  .signup-link {
+    display: flex;
+    gap: 35px;
+    justify-content: center;
+    align-items: center;
+  }
+}

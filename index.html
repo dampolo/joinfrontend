@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Join - Log in</title>
+		<link rel="stylesheet" href="./styles/landing.css" />
+		<link rel="shortcut icon" href="assets/favicon.svg" />
+	</head>
+	<body onload="startAnimation()">
+		<div id="toastContainer" class="toast-container">
+			<div id="toastMessage" class="toast-message"></div>
+		</div>
+
+		<div class="container">
+			<div id="backdrop"></div>
+			<div id="logo"></div>
+
+			<header>
+				<div class="right hidden-on-mobile">
+					<div class="signup-link">
+						<div>Not a Join user?</div>
+						<a href="sign_up.html" class="button fw-bold">Sign up</a>
+					</div>
+				</div>
+			</header>
+			<main>
+				<div class="card">
+					<div class="header">
+						<h1>Log in</h1>
+						<div class="line"></div>
+					</div>
+					<div class="form">
+						<form onsubmit="doLogIn(); return false;">
+							<div class="field">
+								<div class="input-wrapper">
+									<input id="email" class="email" type="email" placeholder="Email" required />
+									<div class="input-icon">
+										<img src="assets/icons/mail.svg" />
+									</div>
+								</div>
+							</div>
+							<div class="field">
+								<div class="input-wrapper">
+									<input id="password" class="password" type="password" placeholder="Password" required onkeyup="checkPasswordVisibility(this)" />
+									<span class="input-icon has-action">
+										<img src="assets/icons/lock.svg" onclick="togglePasswordVisibility(this)" />
+									</span>
+								</div>
+								<p class="error-message">Oops! Wrong password. Please try again.</p>
+							</div>
+							<div class="field">
+								<div class="checkbox-wrapper remember">
+									<label class="checkbox" for="remember">
+										<input id="remember" class="remember" type="checkbox" />
+										<div class="checkbox-icon"></div>
+										<div class="checkbox-label">Remember me</div>
+									</label>
+								</div>
+							</div>
+
+							<div class="buttons">
+								<button id="logInButton" class="button">Log in</button>
+								<button class="button outline" onclick="logInAsGuest(); return false;">Guest Log in</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</main>
+
+			<div class="signup-link hidden-on-desktop">
+				<div>Not a Join user?</div>
+				<a href="sign_up.html" class="button fw-bold">Sign up</a>
+			</div>
+
+			<footer>
+				<a href="privacy_policy.html">Privacy Policy</a>
+				<a href="legal_notice.html">Legal notice</a>
+			</footer>
+		</div>
+
+		<script src="scripts/storage.js"></script>
+		<script src="scripts/users_remote.js"></script>
+		<script src="scripts/index.js"></script>
+		<script src="scripts/script.js"></script>
+	</body>
+</html>

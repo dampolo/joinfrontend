@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Join - Legal Notice</title>
+    <link rel="stylesheet" href="./styles/legal_notice.css" />
+    <link rel="shortcut icon" href="assets/favicon.svg" />
+  </head>
+  <body onload="initLegalNotice(false)">
+    <header w3-include-html="templates/header.html"></header>
+    <aside w3-include-html="templates/menu.html"></aside>
+
+    <div class="container">
+      <div class="legal-notice-header-wrapper">
+        <h1 class="legal-header">Legal Notice</h1>
+        <button class="history-back-btn" onclick="window.location.href='index.html'">
+          <div class="left-arrow-wrap">
+            <svg
+              width="32"
+              height="32"
+              viewBox="0 0 32 32"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <g clip-path="url(#clip0_576_3168)">
+                <path
+                  d="M10.4373 14.6667H25.3333C26.0696 14.6667 26.6666 15.2637 26.6666 16.0001C26.6666 16.7364 26.0696 17.3334 25.3333 17.3334H10.4373L16.6466 23.5427C17.1672 24.0634 17.1672 24.9074 16.6466 25.4281C16.126 25.9487 15.2819 25.9487 14.7613 25.4281L6.74746 17.4143C5.96642 16.6332 5.96642 15.3669 6.74747 14.5858L14.7613 6.57206C15.2819 6.05144 16.126 6.05144 16.6466 6.57206C17.1672 7.09268 17.1672 7.93677 16.6466 8.45739L10.4373 14.6667Z"
+                  fill="#29ABE2"
+                />
+              </g>
+              <defs>
+                <clipPath id="clip0_576_3168">
+                  <rect width="32" height="32" fill="white" />
+                </clipPath>
+              </defs>
+            </svg>
+          </div>
+        </button>
+      </div>
+
+      <div class="imprint-wrap legal-wrap">
+        <h3 class="imprint">Imprint</h3>
+        <ul>
+          <li>Axel Pröger, Damian Poloczek, Daniel Lehmann</li>
+          <li>c/o Developer Akademie GmbH</li>
+          <li>Tassiloplatz 25</li>
+          <li>81541 München</li>
+        </ul>
+
+        <h3>Exploring the Board</h3>
+        <p>Email: support@developer-akademie.com</p>
+      </div>
+
+      <div class="acceptance-wrap legal-wrap">
+        <h3 class="legal-subheader">Acceptance of terms</h3>
+        <p class="legal-text">
+          Acceptance of terms By accessing and using <span class="blue-text">Join</span> (Product),
+          you acknowledge and agree to the following terms and conditions, and any policies,
+          guidelines, or amendments thereto that may be presented to you from time to time. We, the
+          listed students, may update or change the terms and conditions from time to time without
+          notice.
+        </p>
+      </div>
+
+      <div class="scope-ownership-wrap legal-wrap">
+        <h3 class="legal-subheader">Scope and ownership of the product</h3>
+        <p class="legal-text">
+          <span class="blue-text">Join</span> has been developed as part of a student group project
+          in a web development bootcamp at the
+          <span class="blue-text">Developer Akademie GmbH</span>. It has an educational purpose and
+          is not intended for extensive personal & business usage. As such, we cannot guarantee
+          consistent availability, reliability, accuracy, or any other aspect of quality regarding
+          this Product. <br /><br />
+          The design of <span class="blue-text">Join</span> is owned by the
+          <span class="blue-text">Developer Akademie GmbH</span>. Unauthorized use, reproduction,
+          modification, distribution, or replication of the design is strictly prohibited.
+        </p>
+      </div>
+
+      <div class="proprietary-wrap legal-wrap">
+        <h3 class="legal-subheader">Proprietary rights</h3>
+        <p class="legal-text">
+          Proprietary rights Aside from the design owned by
+          <span class="blue-text">Developer Akademie GmbH</span>, we, the listed students, retain
+          all proprietary rights in <span class="blue-text">Join</span>, including any associated
+          copyrighted material, trademarks, and other proprietary information.
+        </p>
+      </div>
+
+      <div class="useof-wrap legal-wrap">
+        <h3 class="legal-subheader">Use of the product</h3>
+        <p class="legal-text">
+          <span class="blue-text">Join</span> is intended to be used for lawful purposes only, in
+          accordance with all applicable laws and regulations. Any use of
+          <span class="blue-text">Join</span> for illegal activities, or to harass, harm, threaten,
+          or intimidate another person, is strictly prohibited. You are solely responsible for your
+          interactions with other users of <span class="blue-text">Join</span>.
+        </p>
+      </div>
+
+      <div class="disclaimer-wrap legal-wrap">
+        <h3 class="legal-subheader">Disclaimer of warranties and limitation of liability</h3>
+        <p class="legal-text">
+          <span class="blue-text">Join</span> is provided "as is" without warranty of any kind,
+          whether express or implied, including but not limited to the implied warranties of
+          merchantability, fitness for a particular purpose, and non-infringement. In no event will
+          we, the listed students, or the <span class="blue-text">Developer Akademie GmbH</span>, be
+          liable for any direct, indirect, incidental, special, consequential or exemplary damages,
+          including but not limited to, damages for loss of profits, goodwill, use, data, or other
+          intangible losses, even if we have been advised of the possibility of such damages,
+          arising out of or in connection with the use or performance of
+          <span class="blue-text">Join</span>.
+        </p>
+      </div>
+
+      <div class="indemnity-wrap legal-wrap">
+        <h3 class="legal-subheader">Indemnity</h3>
+        <p class="legal-text">
+          Indemnity You agree to indemnify, defend and hold harmless us, the listed students, the
+          <span class="blue-text">Developer Akademie GmbH</span>, and our affiliates, partners,
+          officers, directors, agents, and employees, from and against any claim, demand, loss,
+          damage, cost, or liability (including reasonable legal fees) arising out of or relating to
+          your use of <span class="blue-text">Join</span> and/or your breach of this Legal Notice.
+          <br /><br />
+          For any questions or notices, please contact us at support@developer-akademie.com.
+          <br /><br />
+          Date: February 15, 2024
+        </p>
+      </div>
+    </div>
+
+    <script src="scripts/storage.js"></script>
+    <script src="scripts/users_remote.js"></script>
+    <script src="scripts/summary.js"></script>
+    <script src="scripts/script.js"></script>
+    <script src="scripts/legal_notice.js"></script>
+  </body>
+</html>

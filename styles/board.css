@@ -1,0 +1,342 @@
+@import "reset.css";
+@import "menus.css";
+@import "styles.css";
+
+@import "add_task.css";
+@import "edit_task.css";
+
+.container.board {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+
+.container.board .header {
+  padding: 80px 64px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.container.board .header .actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 26px;
+}
+
+.container.board .header .actions .search svg {
+  cursor: pointer;
+}
+.container.board .header .actions .search svg:hover .circle {
+  fill: var(--light-gray);
+}
+.container.board .header .actions .search svg:active .circle {
+  fill: transparent;
+}
+.container.board .header .actions .search svg:active .icon {
+  fill: var(--light-blue);
+}
+
+.container.board .board {
+  display: flex;
+  justify-content: space-evenly;
+  gap: 32px;
+  padding: 0 64px 32px 64px;
+  flex: 1;
+}
+
+.container.board .board .col {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.container.board .board .col .col-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 16px;
+}
+
+.container.board .board .col .col-title h2 {
+  color: var(--primary-light);
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
+}
+
+.container.board .board .col .col-title .add-task svg {
+  cursor: pointer;
+}
+.container.board .board .col .col-title .add-task:hover svg * {
+  stroke: var(--light-blue);
+}
+.container.board .board .col .col-title .add-task:active svg * {
+  stroke: var(--primary-dark);
+}
+
+.container.board .board .col .tasks {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  flex: 1;
+}
+
+.container.board .board .col .tasks .no-tasks {
+  color: var(--gray);
+  text-align: center;
+  background-color: var(--light-gray);
+  border: 1px dashed var(--gray);
+  border-radius: 10px;
+  padding: 16px;
+  box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.16);
+}
+
+.container.board .board .col .tasks.dragover .no-tasks {
+  display: none;
+}
+
+.container.board .board .col .tasks .dropzone {
+  display: none;
+  border-radius: 24px;
+  height: 240px;
+  border: 1px dashed var(--gray);
+}
+
+.container.board .board .col .tasks.dragover .dropzone {
+  display: block;
+}
+
+.container.board .board .col .tasks .task-card {
+  background-color: white;
+  border-radius: 24px;
+  padding: 16px;
+  box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.08);
+  cursor: pointer;
+}
+
+.container.board .board .col .tasks .task-card.dragging {
+  transform: rotate(-5deg);
+}
+
+.container.board .board .col .tasks .task-card .card-body {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  line-height: 19.2px;
+}
+
+.container.board .board .col .tasks .task-card .card-body .card-category-changer {
+  display: none;
+  background-color: white;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: center;
+}
+
+.container.board .board .col .tasks .task-card .card-body .card-category-changer .changer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 30px;
+  padding: 8px 16px;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
+  background-color: var(--primary);
+  color: white;
+}
+
+.container.board .board .col .tasks .task-card .card-body .card-category-changer .changer.close {
+  color: var(--primary);
+  background-color: white;
+}
+
+.container.board
+  .board
+  .col
+  .tasks
+  .task-card
+  .card-body
+  .card-category-changer
+  .changer.close:hover {
+  text-decoration: underline;
+}
+
+.container.board .board .col .tasks .task-card .card-body .card-category-changer .changer:hover {
+  text-decoration: underline;
+}
+
+.container.board .board .col .tasks .task-card .card-body-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.container.board .board .col .tasks .task-card .card-body-header .category-changer {
+  border-radius: 50%;
+  height: 32px;
+  width: 32px;
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+
+.container.board .board .col .tasks .task-card .card-body-header .category-changer img {
+  height: 24px;
+  width: 24px;
+}
+
+.container.board .board .col .tasks .task-card .card-body-header .category-changer:hover {
+  background-color: var(--light-gray);
+}
+
+.container.board .board .col .tasks .task-card .card-body .card-body-header .label span {
+  padding: 4px 16px;
+  border-radius: 8px;
+  color: white;
+  display: inline-block;
+}
+
+.container.board .board .col .tasks .task-card .card-body .card-body-header .label.user-story span {
+  background-color: var(--accent11);
+}
+
+.container.board
+  .board
+  .col
+  .tasks
+  .task-card
+  .card-body
+  .card-body-header
+  .label.technical-task
+  span {
+  background-color: var(--accent6);
+}
+
+.container.board .board .col .tasks .task-card .card-body .card-body-content h3 {
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 19.2px;
+  margin-bottom: 8px;
+  color: var(--primary);
+}
+
+.container.board .board .col .tasks .task-card .card-body .card-body-content p {
+  color: var(--gray);
+}
+
+.container.board .board .col .tasks .task-card .card-body .subtasks {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  line-height: 14.4px;
+}
+
+.container.board .board .col .tasks .task-card .card-body .subtasks .progress-bar {
+  flex-grow: 1;
+  height: 8px;
+  border-radius: 8px;
+  background-color: var(--progress-bar-bg);
+}
+
+.container.board .board .col .tasks .task-card .card-body .subtasks .progress-bar .progress {
+  height: 8px;
+  border-radius: 8px;
+  background-color: var(--progress-bar);
+}
+
+.container.board .board .col .tasks .task-card .card-body .meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.container.board .board .col .tasks .task-card .card-body .meta .assignees {
+  display: inline-flex;
+}
+
+.container.board .board .col .tasks .task-card .card-body .meta .assignees .avatar {
+  margin-left: -14px;
+}
+.container.board .board .col .tasks .task-card .card-body .meta .assignees .avatar:first-child {
+  margin-left: 0;
+}
+
+/* Responsive */
+
+@media (max-width: 1150px) {
+  .container.board .header {
+    padding: 48px 16px;
+    flex-direction: column;
+    align-items: unset;
+    gap: 40px;
+  }
+
+  .container.board .header .actions .search {
+    min-width: 100%;
+  }
+
+  .container.board .header .left {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .container.board .header .left .button {
+    padding: 10px;
+  }
+
+  .container.board .header .left .button img {
+    height: 20px;
+    width: 20px;
+  }
+
+  .container.board .board {
+    padding: 0 16px;
+    flex-direction: column;
+  }
+
+  .container.board .board .col .tasks {
+    flex-direction: row;
+    align-items: flex-start;
+    flex-wrap: nowrap;
+    overflow-x: scroll;
+    margin: -10px;
+    padding: 10px;
+  }
+
+  .container.board .board .col .tasks .task-card {
+    width: 252px;
+    min-width: 252px;
+  }
+
+  .container.board .board .col .tasks .task-card .card-body-header .category-changer {
+    display: flex;
+  }
+}
+
+#task-dialog {
+  max-width: 525px;
+}
+
+#task-dialog .add-task-container {
+  flex-direction: column;
+}
+
+#task-dialog .add-task-container .add-task-right-side,
+#task-dialog .add-task-container .add-task-left-side {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+#task-dialog .add-task-container .add-task-right-left-between {
+  display: none;
+}

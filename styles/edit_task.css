@@ -1,0 +1,265 @@
+#task-show-dialog,
+#task-edit-dialog {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+#task-dialog .dialog-category-container span {
+  padding: 4px 16px;
+  border-radius: 8px;
+  color: white;
+  display: inline-block;
+}
+
+#task-dialog .task-show-dialog .dialog-header {
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+#task-dialog .dialog-body {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  overflow-y: scroll;
+}
+
+#task-dialog .dialog-footer {
+  position: sticky;
+  bottom: 0;
+  margin-top: auto;
+  padding-top: 24px;
+  background-color: white;
+
+  display: flex;
+  justify-content: flex-end;
+}
+
+#task-dialog .dialog-title {
+  font-size: 61px;
+  font-weight: 700;
+  line-height: 73px;
+  word-wrap: break-word;
+}
+
+#task-dialog .dialog-due-date,
+#task-dialog .dialog-priority {
+  display: flex;
+  text-transform: capitalize;
+}
+
+#task-dialog .dialog-due-date .label,
+#task-dialog .dialog-priority .label {
+  width: 120px;
+  color: var(--primary);
+}
+
+#task-dialog .dialog-due-date #dialog-show-due-date,
+#task-dialog .dialog-priority #dialog-show-priority {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+#task-dialog .dialog-due-date #dialog-show-due-date img,
+#task-dialog .dialog-priority #dialog-show-priority img {
+  height: 24px;
+  width: 24px;
+}
+
+#task-dialog .dialog-assigned-to,
+#task-dialog .dialog-subtasks {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+#task-dialog .dialog-assigned-to .label,
+#task-dialog .dialog-subtasks .label {
+  color: var(--primary);
+}
+
+#task-dialog .dialog-assigned-to-container {
+  gap: 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+#task-dialog .dialog-assigned-to-container .assignee {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+#task-dialog .dialog-category-container.user-story span {
+  background-color: var(--accent11);
+}
+
+#task-dialog .dialog-category-container.technical-task span {
+  background-color: var(--accent6);
+}
+
+#task-dialog .checkbox-wrapper {
+  display: flex;
+}
+
+#task-dialog .checkbox-wrapper label {
+  position: relative;
+  padding: 4px 16px;
+}
+
+#task-dialog .checkbox-wrapper .checkbox-icon {
+  top: 4px;
+  left: 16px;
+}
+
+#task-dialog .checkbox-wrapper label:hover .checkbox-icon {
+  background-color: var(--input-border-color);
+  border-radius: 50%;
+}
+
+#task-dialog .checkbox-wrapper label:hover {
+  background-color: var(--light-gray);
+  border-radius: 10px;
+}
+
+.dialog-header-edit {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+}
+
+.dialog-header-category-edit {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  line-height: 1.5px;
+}
+
+.dialog-header-category {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 16px;
+  border-radius: 8px;
+  color: white;
+  background-color: var(--accent6);
+  height: 30px;
+}
+
+.dialog-header-title-container {
+  display: flex;
+  margin-top: 10px;
+}
+
+.dialog-header-title {
+  font-size: 40px;
+  font-weight: 700;
+  line-height: normal;
+  word-break: break-all;
+}
+
+.dialog-header-description {
+  display: flex;
+  margin-block: 10px;
+}
+
+.dialog-header-date-priority {
+  display: flex;
+  flex-direction: column;
+  margin-block: 10px;
+  gap: 8px;
+}
+
+.dialog-header-date,
+.dialog-header-priority {
+  display: flex;
+}
+
+.dialog-header-theme {
+  width: 100px;
+}
+
+.dialog-header-assigned-container,
+.dialog-header-subtasks-container {
+  margin-block: 5px;
+}
+
+.dialog-header-subtasks,
+.dialog-header-assigned-people {
+  margin-left: 20px;
+  max-height: 200px;
+  overflow-y: scroll;
+}
+
+.dialog-header-subtasks-text {
+  word-break: break-all;
+}
+
+.dialog-header-subtasks li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.dialog-header-subtasks li label {
+  cursor: pointer;
+}
+
+.dialog-header-subtasks li .add-task-checkbox-edit {
+  opacity: 1;
+  height: auto;
+  width: auto;
+}
+
+.dialog-header-assigned-people li label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.dialog-header-assigned-people li input {
+  display: none;
+}
+
+.dialog-header-edit-options-contanier {
+  display: flex;
+  justify-content: end;
+  align-items: end;
+  height: 100%;
+}
+.dialog-header-edit-options {
+  display: flex;
+}
+
+.svg-wrap {
+  margin-right: 8px;
+}
+
+.option-icon {
+  display: flex;
+  align-items: center;
+  margin-right: 16px;
+  font-size: 16px;
+  scale: 1;
+}
+
+.option-icon:hover {
+  color: var(--light-blue);
+  cursor: pointer;
+  scale: 1.03;
+}
+
+.option-icon:hover svg path {
+  fill: var(--light-blue);
+}
+
+.d-none {
+  display: none;
+}
+
+.add-task-bottom-clear-button {
+  display: none;
+}

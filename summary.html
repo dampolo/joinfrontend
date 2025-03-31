@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Join - Summary</title>
+    <link rel="stylesheet" href="styles/styles.css" />
+    <link rel="stylesheet" href="styles/summary.css" />
+    <link rel="shortcut icon" href="assets/favicon.svg" />
+  </head>
+  <body onload="initSummary()">
+    <header w3-include-html="templates/header.html"></header>
+    <aside w3-include-html="templates/menu.html"></aside>
+
+    <div class="container summary">
+      <div class="summary-content-header">
+        <h1 class="summary-headline">Join 360</h1>
+        <div class="vertical-divider hidden-on-mobile">
+          <svg
+            width="4"
+            height="63"
+            viewBox="0 0 4 63"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path d="M2 2V61" stroke="#29ABE2" stroke-width="3" stroke-linecap="round" />
+          </svg>
+        </div>
+        <h2 class="summary-subheadline">Key Metrics at Glance</h2>
+        <div class="horizontal-divider hidden-on-desktop">
+          <svg
+            width="94"
+            height="4"
+            viewBox="0 0 94 4"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path d="M92 2L2 2" stroke="#29ABE2" stroke-width="3" stroke-linecap="round" />
+          </svg>
+        </div>
+      </div>
+
+      <div class="summary-content-wrapper">
+        <div class="summary-content-left">
+          <div class="summary-top-row-wrapper">
+            <a href="./board.html" class="summary-top-box bg-white">
+              <div class="img-wrap img-wrap-edit">
+                <svg
+                  width="25"
+                  height="25"
+                  viewBox="0 0 25 25"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    class="edit-icon"
+                    d="M3.16667 22.3332H5.03333L16.5333 10.8332L14.6667 8.9665L3.16667 20.4665V22.3332ZM22.2333 8.89984L16.5667 3.29984L18.4333 1.43317C18.9444 0.922059 19.5722 0.666504 20.3167 0.666504C21.0611 0.666504 21.6889 0.922059 22.2 1.43317L24.0667 3.29984C24.5778 3.81095 24.8444 4.42761 24.8667 5.14984C24.8889 5.87206 24.6444 6.48873 24.1333 6.99984L22.2333 8.89984ZM20.3 10.8665L6.16667 24.9998H0.5V19.3332L14.6333 5.19984L20.3 10.8665Z"
+                    fill="white"
+                  />
+                </svg>
+              </div>
+              <div class="topbox-text-wrap">
+                <div class="topbox-headline" id="num-tasks-todo">0</div>
+                <div class="topbox-subheadline">To-do</div>
+              </div>
+            </a>
+            <a href="./board.html" class="summary-top-box bg-white">
+              <div class="img-wrap img-wrap-check">
+                <svg
+                  width="29"
+                  height="22"
+                  viewBox="0 0 38 30"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    class="check-icon"
+                    d="M4.02832 15.0001L15.2571 26.0662L33.9717 3.93408"
+                    stroke="white"
+                    stroke-width="7"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </div>
+              <div class="topbox-text-wrap">
+                <div class="topbox-headline" id="num-tasks-done">0</div>
+                <div class="topbox-subheadline">Done</div>
+              </div>
+            </a>
+          </div>
+
+          <div class="summary-middle-row-wrapper">
+            <a href="./board.html" class="summary-middle-row-box bg-white">
+              <div class="middle-row-box-left">
+                <div class="img-wrap middlebox-img">
+                  <img src="./assets/icons/double_arrow_up.svg" alt="" class="uparrow-icon" />
+                </div>
+                <div class="middlebox-text-wrap">
+                  <div class="middlebox-headline" id="num-tasks-urgent">0</div>
+                  <div class="middlebox-subheadline">Urgent</div>
+                </div>
+              </div>
+              <div class="middle-row-box-divider"></div>
+              <div class="middle-row-box-right nowrap">
+                <div class="date-headline" id="tasks-upcoming-deadline">n/a</div>
+                <div class="date-subtext">Upcoming Deadline</div>
+              </div>
+            </a>
+          </div>
+          <div class="summary-bottom-row-wrapper">
+            <a href="./board.html" class="summary-bottom-box bg-white">
+              <div class="bottom-text-wrap">
+                <div class="bottom-headline" id="num-tasks-in-board">0</div>
+                <div class="bottom-subheadline">
+                  Tasks in <br />
+                  Board
+                </div>
+              </div>
+            </a>
+            <a href="./board.html" class="summary-bottom-box bg-white">
+              <div class="bottom-text-wrap">
+                <div class="bottom-headline" id="num-tasks-in-progress">0</div>
+                <div class="bottom-subheadline">Tasks in Progress</div>
+              </div>
+            </a>
+            <a href="./board.html" class="summary-bottom-box bg-white">
+              <div class="bottom-text-wrap">
+                <div class="bottom-headline" id="num-tasks-awaiting-feedback">0</div>
+                <div class="bottom-subheadline">Awaiting Feedback</div>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <div id="summary-geeting-container" class="summary-content-right">
+          <h2 id="greeting" class="welcome-text"></h2>
+        </div>
+      </div>
+    </div>
+    <script src="scripts/storage.js"></script>
+    <script src="scripts/users_remote.js"></script>
+    <script src="scripts/tasks_remote.js"></script>
+    <script src="scripts/summary.js"></script>
+    <script src="scripts/script.js"></script>
+  </body>
+</html>
