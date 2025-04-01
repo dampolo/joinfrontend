@@ -16,7 +16,7 @@ async function setItem(taskId, payload) {
   debugger
   const url = `${fetchSetAllTasksUrl}${taskId}/`;
   return fetch(url, {
-    method: "PATCH",  // Use "PATCH" if you're only updating certain fields
+    method: "PATCH",
     headers: {
       "Content-Type": "application/json",
     },
