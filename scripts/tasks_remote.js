@@ -17,9 +17,9 @@ async function getTasks() {
  * @param {Array} tasks - An array of user objects.
  * @returns {boolean} A boolean indicating whether the save operation was successful.
  */
-async function saveTasks(tasks) {
+async function saveTasks(taskId, payload) {
   debugger
-  return await setItem("allTasks", tasks).then((result) => {
+  return await setItem(taskId, payload).then((result) => {
     if (result.status == "success") return true;
     return false;
   });

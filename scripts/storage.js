@@ -14,15 +14,14 @@ const fetchSetAllTasksUrl = "http://127.0.0.1:8000/api/allTasks/";
 
 async function setItem(taskId, payload) {
   debugger
-  const url = `${fetchSetAllTasksUrl}${taskId}/`; // Ensure taskId is passed
+  const url = `${fetchSetAllTasksUrl}${taskId}/`;
   return fetch(url, {
-    method: "PUT",  // Use "PATCH" if you're only updating certain fields
+    method: "PATCH",  // Use "PATCH" if you're only updating certain fields
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(payload),
-  }).then((res) => res.json());
-}
+    body: JSON.stringify({board: payload}),
+  })}
 
 async function getItem(key) {
   const url = `${fetchGetAllTasksUrl}${key}`;

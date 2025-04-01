@@ -143,15 +143,19 @@ async function changeTaskCategory(event) {
   
   let elementIndex = event.dataTransfer.getData("elementIndex");
   let targetElement = event.currentTarget;
-  let category = targetElement.attributes["data-category"].value;
+  let board = targetElement.attributes["data-category"].value;
   
   hideDropZone(event, targetElement);
-  debugger
   currentTask = boardTasks[elementIndex]
-  currentTask.board = category
+  currentTaskId = boardTasks[elementIndex].id
+  
+  // add new board category to Task 
+  currentTask.board = board
   // boardTasks[elementIndex].board = category;
-
-  await saveTasks(boardTasks);
+  debugger
+  console.log(currentTask);
+  
+  await saveTasks(currentTaskId, currentTask.board);
 
   renderBoard();
 }
