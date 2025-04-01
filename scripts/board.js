@@ -8,10 +8,10 @@ let draggable = true;
  * @property {string} emptyMessage - The message to display when the category is empty.
  */
 let boardCategories = [
-  { name: "to-do", label: "To do", emptyMessage: "No tasks to do" },
-  { name: "in-progress", label: "In Progress", emptyMessage: "No tasks in progress" },
-  { name: "await-feedback", label: "Await feedback", emptyMessage: "No tasks awaiting feedback" },
-  { name: "done", label: "Done", emptyMessage: "No tasks are done" },
+  { name: "TO_DO", label: "To do", emptyMessage: "No tasks to do" },
+  { name: "IN_PROGRESS", label: "In Progress", emptyMessage: "No tasks in progress" },
+  { name: "AWAIT_FEEDBACK", label: "Await feedback", emptyMessage: "No tasks awaiting feedback" },
+  { name: "DONE", label: "Done", emptyMessage: "No tasks are done" },
 ];
 
 /**
@@ -24,7 +24,7 @@ async function initBoard() {
   await init();
   setNavActive("board");
   boardTasks = await getTasks();
-  contactsToAssigned = await getContacts();
+  // contactsToAssigned = await getContacts();
   createAssignedTo();
 
   window.innerWidth <= 1150 ? (draggable = false) : (draggable = true);
@@ -39,10 +39,10 @@ function renderBoard(tasks) {
   if (!tasks) tasks = boardTasks;
 
   boardCategories.forEach((category) => {
-    tasksContainer = document.getElementById(`tasks-${category.name}`);
+    tasksContainer = document.getElementById(`TASKS_${category.name}`);
     tasksContainer.innerHTML = "";
-
-    filteredTasks = tasks.filter((task) => task.boardCategory === category.name);
+    
+    filteredTasks = tasks.filter((task) => task.board === category.name);
 
     if (filteredTasks.length === 0) {
       tasksContainer.innerHTML = noTasksTemplate(category.emptyMessage);
@@ -140,13 +140,16 @@ function hideDropZone(event, element) {
  */
 async function changeTaskCategory(event) {
   event.preventDefault();
-
+  
   let elementIndex = event.dataTransfer.getData("elementIndex");
   let targetElement = event.currentTarget;
   let category = targetElement.attributes["data-category"].value;
-
+  
   hideDropZone(event, targetElement);
-  boardTasks[elementIndex].boardCategory = category;
+  debugger
+  currentTask = boardTasks[elementIndex]
+  currentTask.board = category
+  // boardTasks[elementIndex].board = category;
 
   await saveTasks(boardTasks);
 
@@ -161,7 +164,7 @@ async function changeTaskCategory(event) {
  */
 async function changeTaskCategoryOnMobile(event, index, category) {
   event.stopPropagation();
-
+  debugger
   boardTasks[index].boardCategory = category;
   await saveTasks(boardTasks);
   renderBoard();

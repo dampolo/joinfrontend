@@ -20,7 +20,7 @@ function taskCardTemplate(index, task, draggable) {
       <div class="card-body">
         <div class="card-category-changer">
           <div class="fw-bold">Move task to:</div>
-          ${taskCardChangeCategoryChangerTemplate(index, task.boardCategory)}
+          ${taskCardChangeCategoryChangerTemplate(index, task.board)}
           <div class="changer close" onclick="closeChangeTaskCategoryOnMobile(event, ${index})">Cancel</div>
         </div>
         <div class ="card-body-header">
@@ -37,7 +37,7 @@ function taskCardTemplate(index, task, draggable) {
         </div>
         ${taskCardSubtasksTemplate(task.subtasks)}
         <div class="meta">
-          ${taskCardAssigneesTemplate(task.assignees)}
+          ${taskCardAssigneesTemplate(task.assigned_to)}
           <div class="priority">
             <img src="assets/icons/priority=${task.priority}.svg" alt="${task.priority}" />
           </div>
@@ -96,7 +96,7 @@ function taskCardAssigneesTemplate(assignees) {
     const bgColor = assignColor(assignee);
     html += `
       <div class="avatar" style="background-color: ${bgColor}">
-        ${getUserInitials(assignee)}
+        ${getUserInitials(assignee.name)}
       </div>`;
   }
 

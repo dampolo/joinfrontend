@@ -4,8 +4,12 @@
  */
 async function getTasks() {
   let response = await getItem("allTasks");
-  if (response.status == "error") return new Array();
-  return JSON.parse(response.data.value);
+
+  if (response.status === "error") return [];
+
+  console.log("getTasks: ", response);
+
+  return response;
 }
 
 /**
@@ -14,8 +18,19 @@ async function getTasks() {
  * @returns {boolean} A boolean indicating whether the save operation was successful.
  */
 async function saveTasks(tasks) {
+  debugger
   return await setItem("allTasks", tasks).then((result) => {
     if (result.status == "success") return true;
     return false;
   });
 }
+
+
+// COPY
+
+// async function saveTasks(tasks) {
+//   return await setItem("allTasks", tasks).then((result) => {
+//     if (result.status == "success") return true;
+//     return false;
+//   });
+// }
