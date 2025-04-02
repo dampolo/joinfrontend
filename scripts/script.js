@@ -83,13 +83,26 @@ function closeHeaderMenu(event) {
  * @param {string} name - The name from which to generate initials.
  * @returns {string} The initials generated from the name.
  */
-function getUserInitials(name) {
-  let initials = "";
-  const nameParts = name.split(" ");
-  for (let i = 0; i < nameParts.length; i++) {
-    initials += nameParts[i].charAt(0).toUpperCase();
+async function getUserInitials(id) {
+  let name = "Guest";
+
+  if (id !== "Guest") {
+    try {
+      const user = await getUser(id);
+      console.log(user.avatar_color);
+      
+      name = user.name || "Guest";
+    } catch (error) {
+      console.error("Error fetching user:", error);
+      return "";
+    }
   }
-  return initials;
+  
+  return name
+  .trim()
+  .split(/\s+/)
+  .map(word => word.charAt(0).toUpperCase())
+  .join(""); 
 }
 
 /**
