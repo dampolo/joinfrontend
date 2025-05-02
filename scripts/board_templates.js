@@ -92,11 +92,11 @@ function taskCardAssigneesTemplate(assignees) {
   const loopLimit = Math.min(assignees.length, 4);
 
   for (let i = 0; i < loopLimit; i++) {
-    const assignee = assignees[i];
+    const assignee = assignees[i];    
     const bgColor = assignColor(assignee);
     html += `
       <div class="avatar" style="background-color: ${bgColor}">
-        ${getUserInitials(assignee.name)}
+       ${getUserInitials(assignee)}
       </div>`;
   }
 

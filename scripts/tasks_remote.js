@@ -6,9 +6,7 @@ async function getTasks() {
   let response = await getAllTasks();
 
   if (response.status === "error") return [];
-
   console.log("getTasks: ", response);
-
   return response;
 }
 
@@ -18,7 +16,6 @@ async function getTasks() {
  * @returns {boolean} A boolean indicating whether the save operation was successful.
  */
 async function saveTasks(taskId, payload) {
-  debugger
   return await setItem(taskId, payload).then((result) => {
     if (result.status == "success") return true;
     return false;
