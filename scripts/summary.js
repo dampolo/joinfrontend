@@ -9,6 +9,8 @@ async function initSummary() {
   await init();
   setNavActive("summary");
   tasks = await getTasks();
+  console.log(tasks);
+  
   greet();
   showStats();
 
@@ -28,7 +30,6 @@ function greet() {
   const currentTime = new Date();
   const currentHour = currentTime.getHours();
   const loggedInUser = getLoggedInUser();
-
   let greeting;
 
   if (currentHour < 12) {
@@ -41,7 +42,7 @@ function greet() {
 
   // Append username to greeting if available
   if (loggedInUser.name !== "Guest") {
-    greeting += `,<br> <span class="name">${loggedInUser.name}</span>`;
+    greeting += `,<br> <span class="name">${loggedInUser.username}</span>`;
   } else {
     greeting += "!";
   }
@@ -107,28 +108,28 @@ function findNextUrgentTask() {
  * Displays statistics related to tasks.
  */
 function showStats() {
-  var upcomingDeadline = findNextUrgentTask();
+  const upcomingDeadline = findNextUrgentTask();
 
   document.getElementById("num-tasks-in-board").innerHTML = tasks.length;
 
   document.getElementById("num-tasks-todo").innerHTML = tasks.filter(
-    (task) => task.boardCategory === "to-do"
+    (task) => task.board === "TO_DO"
   ).length;
 
   document.getElementById("num-tasks-done").innerHTML = tasks.filter(
-    (task) => task.boardCategory === "done"
+    (task) => task.board === "DONE"
   ).length;
 
   document.getElementById("num-tasks-in-progress").innerHTML = tasks.filter(
-    (task) => task.boardCategory === "in-progress"
+    (task) => task.board === "IN_PROGRESS"
   ).length;
 
   document.getElementById("num-tasks-awaiting-feedback").innerHTML = tasks.filter(
-    (task) => task.boardCategory === "await-feedback"
+    (task) => task.board === "AWAIT_FEEDBACK"
   ).length;
 
   document.getElementById("num-tasks-urgent").innerHTML = tasks.filter(
-    (task) => task.priority === "urgent"
+    (task) => task.priority === "URGENT"
   ).length;
 
   document.getElementById("tasks-upcoming-deadline").innerHTML = upcomingDeadline

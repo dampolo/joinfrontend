@@ -21,7 +21,6 @@ async function includeHTML() {
     let resp = await fetch(file);
     if (resp.ok) {
       var html = await resp.text();
-      // console.log(html);
       element.innerHTML = html;
     } else {
       element.innerHTML = "Page not found";
@@ -36,8 +35,8 @@ async function includeHTML() {
 function loadHeader(showRightSection = true) {
   if (isLoggedIn() && showRightSection) {
     let headerUserInitials = document.getElementById("headerUserInitials");
-    const currentUser = getLoggedInUser();
-    headerUserInitials.innerHTML = getUserInitials(currentUser.name);
+    const currentUser = getLoggedInUser();    
+    headerUserInitials.innerHTML = getLoggedUserInitials(currentUser);
     document.getElementById("header-right-section").style.display = "flex";
   }
 }
@@ -83,13 +82,20 @@ function closeHeaderMenu(event) {
  * @param {string} name - The name from which to generate initials.
  * @returns {string} The initials generated from the name.
  */
-function getUserInitials(name) {
+function getUserInitials(name) {  
   let initials = "";
   const nameParts = name.split(" ");
   for (let i = 0; i < nameParts.length; i++) {
     initials += nameParts[i].charAt(0).toUpperCase();
   }
   return initials;
+}
+
+function getLoggedUserInitials(name) {
+  const firstName = name.username.charAt(0);
+  const lastName = name.last_name.charAt(0);
+  const initials = firstName + lastName
+  return initials
 }
 
 /**
@@ -107,6 +113,7 @@ function getRandomInt(max) {
 function doLogOut() {
   if (isLoggedIn()) logOut();
   localStorage.removeItem("summary-animation-played");
+  localStorage.removeItem("token");
   window.location.href = "index.html";
 }
 

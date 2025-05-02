@@ -3,7 +3,7 @@
  * @returns {Array} An array of user objects or an empty array if an error occurs.
  */
 async function getTasks() {
-  let response = await getItem("allTasks");
+  let response = await getAllTasks();
 
   if (response.status === "error") return [];
 
