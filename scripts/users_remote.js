@@ -35,10 +35,10 @@ function removeUserFromLocalStorage() {
  * @returns {Promise<boolean>} A Promise that resolves to a boolean indicating whether the login was successful.
  */
 async function logIn(username, password, guest = false) {  
-  // if (isLoggedIn()) logOut();
+  if (isLoggedIn()) logOut();
   
   if (guest) {
-    var guestUser = { userId: 0, name: "Guest", email: null, password: null };
+    const guestUser = { userId: 0, name: "Guest", email: null, password: null };
     saveUserToLocalStorage(guestUser);
     return true;
   }

@@ -82,9 +82,9 @@ function closeHeaderMenu(event) {
  * @param {string} name - The name from which to generate initials.
  * @returns {string} The initials generated from the name.
  */
-function getUserInitials(name) {  
+function getUserInitials(assignedTo) {  
   let initials = "";
-  const nameParts = name.split(" ");
+  const nameParts = assignedTo.name.split(" ");
   for (let i = 0; i < nameParts.length; i++) {
     initials += nameParts[i].charAt(0).toUpperCase();
   }
@@ -92,10 +92,17 @@ function getUserInitials(name) {
 }
 
 function getLoggedUserInitials(name) {
-  const firstName = name.username.charAt(0);
-  const lastName = name.last_name.charAt(0);
-  const initials = firstName + lastName
-  return initials
+  let initials = ""
+  
+  if(name.name !== "Guest") {
+    const firstName = name.username.charAt(0);
+    const lastName = name.last_name.charAt(0);
+    initials = firstName + lastName
+    return initials
+  } else {
+    initials = "G"
+    return initials
+  }   
 }
 
 /**

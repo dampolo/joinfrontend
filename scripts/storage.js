@@ -9,9 +9,8 @@ const STORAGE_TOKEN = "N5WAMIGSG8DUOHKFD7VXKHVD6CGSIEVVWLAYN5AL";
  * @constant {string}
  */
 // const STORAGE_URL = "https://remote-storage.developerakademie.org/item";
-const fetchGetUserUrl = "http://127.0.0.1:8000/api/user/";
-const fetchGetAllTasksUrl = "http://127.0.0.1:8000/api/";
-const fetchSetAllTasksUrl = "http://127.0.0.1:8000/api/tasks/";
+const fetchGetUserUrl = "http://127.0.0.1:8000/api/users/";
+const fetchGetAllTasksUrl = "http://127.0.0.1:8000/api/tasks";
 const fetchLogin = "http://127.0.0.1:8000/auth/login/";
 
 
@@ -31,7 +30,7 @@ async function setItem(taskId, payload) {
 
 
 async function getAllTasks() {
-  const url = `${fetchSetAllTasksUrl}`;
+  const url = `${fetchGetAllTasksUrl}`;
   const res = await fetch(url, {
     method: "GET",
     headers: {
@@ -47,6 +46,23 @@ async function getAllTasks() {
 }
  
 
+async function getAllContacts() {
+  const url = `${fetchGetUserUrl}`;
+  const res = await fetch(url);
+
+  // const res = await fetch(url, {
+  //   method: "GET",
+  //   headers: {
+  //     'Authorization': `Token ${getLoggedInUser().token}`,
+  //     'Content-Type': 'application/json',
+  //   },
+  // })
+  if(!res.ok) {
+    throw new Error(`HTTP error! Status: ${res.status}`);
+  }
+  const task = await res.json()
+  return task
+}
 
 
 async function getUser(username, password) {
