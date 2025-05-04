@@ -30,19 +30,48 @@
           </div>
           <div class="form">
             <form onsubmit="signUp(); return false;">
+              
               <div class="field">
                 <div class="input-wrapper">
-                  <input id="name" class="name" type="text" placeholder="Name" required />
+                  <input id="username" class="name" type="text" placeholder="Username" required />
                   <span class="input-icon">
                     <img src="assets/icons/person.svg" />
                   </span>
                 </div>
               </div>
+              
+              <div class="field">  
+                <div class="input-wrapper">
+                    <input id="first-name" class="name" type="text" placeholder="First Name" required />
+                  <span class="input-icon">
+                    <img src="assets/icons/person.svg" />
+                  </span>
+                </div>
+              </div>
+              
+              <div class="field">  
+                <div class="input-wrapper">
+                  <input id="last-name" class="name" type="text" placeholder="Last Name" required />
+                  <span class="input-icon">
+                    <img src="assets/icons/person.svg" />
+                  </span>
+              </div>
+            </div>
+
               <div class="field">
                 <div class="input-wrapper">
-                  <input id="email" class="email" type="email" placeholder="Email" required />
+                  <input id="email" class="email" type="email" placeholder="E-mail" required />
                   <span class="input-icon">
                     <img src="assets/icons/mail.svg" />
+                  </span>
+                </div>
+              </div>
+
+              <div class="field">
+                <div class="input-wrapper">
+                  <input id="telephone" class="email" type="tel" placeholder="Telephone" required pattern="[0-9+\s]{6,20}" />
+                  <span class="input-icon">
+                    <img src="assets/icons/call.svg" />
                   </span>
                 </div>
               </div>

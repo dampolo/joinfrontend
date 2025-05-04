@@ -8,12 +8,15 @@
  * @returns {string} The HTML template for the contact.
  */
 function contactTemplate(contact, i, color, firstLetters) {
+    const loggedInUser = getLoggedInUser().username + " " + getLoggedInUser().last_name;
+    
+    
     return /*html*/ `
     <div class="contact-wrap" tabindex="${i}" onclick="renderInfo(${i})">
         <div class="avatar accent-1" style="background-color: ${color}" id="background${i}">${firstLetters}</div>
         <div class="contact-data">
             <span class="contact-name capitalize">${contact.name}
-                ${contact.userId == getLoggedInUser().userId ? '(You)' : ''}
+                ${contact.name === loggedInUser ? '(You)' : ''}
             </span>
             <a href="mailto:${contact.email}" class="contact-email">${contact.email}</a>
         </div>

@@ -3,22 +3,37 @@
  * @returns {Promise<void>} A promise that resolves once the sign-up process is complete.
  */
 async function signUp() {
-  const name = document.getElementById("name").value;
+  const userName = document.getElementById("username").value;
+  const firstName = document.getElementById("first-name").value;
+  const lastName = document.getElementById("last-name").value;
   const email = document.getElementById("email").value;
+  const telephone = document.getElementById("telephone").value
   const password = document.getElementById("password").value;
   let userId = 1;
 
-  let users = await getUsers();
-  let contacts = await getContacts();
+  debugger
 
-  if (users.length > 0) {
-    userId = users.slice(-1)[0].userId + 1;
-  }
+  const userData = {
+    username: userName,
+    first_name: firstName,
+    last_name: lastName,
+    email: email,
+    phone: telephone,
+    password: password,
+    repeated_password: password
+  };
+  
+  // let users = await getUsers();
+  // let contacts = await getContacts();
 
-  users.push({ userId, name, email, password });
-  contacts.push({ userId, name, email, phone: "" });
+  // if (users.length > 0) {
+  //   userId = users.slice(-1)[0].userId + 1;
+  // }
 
-  if ((await saveUsers(users)) && (await saveContacts(contacts))) {
+  // users.push({ userId, name, email, password });
+  // contacts.push({ userId, name, email, phone: "" });
+
+  if ( await saveUsers(userData)) {
     showToast("You signed up successfully.");
     setTimeout(() => {
       window.location.href = "index.html?registered=true";

@@ -3,12 +3,12 @@
  * @param {Array} users - An array of user objects.
  * @returns {boolean} A boolean indicating whether the save operation was successful.
  */
-async function saveUsers(users) {
-  return await setItem("users", users).then((result) => {
-    if (result.status == "success") return true;
-    return false;
-  });
-}
+// async function saveUsers(users) {
+//   return await setItem("users", users).then((result) => {
+//     if (result.status == "success") return true;
+//     return false;
+//   });
+// }
 
 /**
  * Saves user data to local storage.
