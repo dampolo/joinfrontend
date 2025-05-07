@@ -14,7 +14,7 @@ async function openTaskDialog(id, index, taskId) {
   
   currentIndex = index;
   newTask = { ...boardTasks[currentIndex] };
-
+  
   renderDialog(index);
   openDialog(id);
 }
@@ -267,9 +267,11 @@ function editTaskRenderAssignedTo() {
   createContactsContainer.innerHTML = "";
 
   for (let i = 0; i < contactsToAssigned.length; i++) {
+    
     const contact = contactsToAssigned[i].name;
     const bgColor = assignColor(contact);
-    const assigned = newTask.assignees.includes(contact);
+    const assigned = newTask.assigned_to.includes(contact);
+    
 
     createContactsContainer.innerHTML += editTaskRenderAssignedToHtml(
       i,
