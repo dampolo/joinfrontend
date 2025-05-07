@@ -21,7 +21,7 @@ async function updateTask(taskId, payload) {
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ board: payload }),
+    body: JSON.stringify({ payload }),
   });
 }
 

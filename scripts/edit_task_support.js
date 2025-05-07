@@ -18,8 +18,6 @@ function editTaskRenderAssignedToHtml(i, bgColor, contact, assigned) {
   
 
 function renderTaskAssigneeHtml(assignee, bgColor) {
-  console.log(bgColor);
-  
   return `
     <div class="assignee">
       <div class="avatar" style="background-color: ${bgColor}">
