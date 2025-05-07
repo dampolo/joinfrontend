@@ -154,10 +154,9 @@ async function changeTaskCategory(event) {
   // add new board category to Task 
   currentTask.board = board
   // boardTasks[elementIndex].board = category;
-  debugger
   console.log(currentTask);
   
-  await saveTasks(currentTaskId, currentTask.board);
+  await updateTask(currentTaskId, currentTask.board);
 
   renderBoard();
 }

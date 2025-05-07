@@ -14,8 +14,8 @@ const fetchGetAllTasksUrl = "http://127.0.0.1:8000/api/tasks/";
 const fetchLogin = "http://127.0.0.1:8000/auth/login/";
 const fetchRegistration = "http://127.0.0.1:8000/auth/registration/";
 
-async function setItem(taskId, payload) {
-  const url = `${fetchSetAllTasksUrl}${taskId}/`;
+async function updateTask(taskId, payload) {
+  const url = `${fetchGetAllTasksUrl}${taskId}/`;
   return fetch(url, {
     method: "PATCH",
     headers: {
