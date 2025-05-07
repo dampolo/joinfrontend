@@ -95,8 +95,9 @@ function renderTaskAssignees(assignees) {
     dialogAssignedToContainer.innerHTML = "This task is assigned to all of us.";
   } else {
     for (let i = 0; i < assignees.length; i++) {
+      debugger
       const assignee = assignees[i];
-      const bgColor = assignColor(assignee);
+      const bgColor = assignColor(assignee.name);
       dialogAssignedToContainer.innerHTML += renderTaskAssigneeHtml(assignee, bgColor);
     }
   }
