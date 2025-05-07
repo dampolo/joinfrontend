@@ -15,8 +15,10 @@ function noTasksTemplate(message) {
  * @returns {string} HTML template for task card.
  */
 function taskCardTemplate(index, task, draggable) {
+  // console.log(task.id);
+  
   return `
-    <div id="task-card-${index}" class="task-card draggable" data-draggable draggable="${draggable}" ondragstart="dragStart(event, this)" data-index="${index}" ondragend="dragEnd(this)" onclick="openTaskDialog('task-dialog', ${index})">
+    <div id="task-card-${index}" class="task-card draggable" data-draggable draggable="${draggable}" ondragstart="dragStart(event, this)" data-index="${index}" ondragend="dragEnd(this)" onclick="openTaskDialog('task-dialog', ${index}, ${task.id})">
       <div class="card-body">
         <div class="card-category-changer">
           <div class="fw-bold">Move task to:</div>
@@ -92,7 +94,7 @@ function taskCardAssigneesTemplate(assignees) {
   const loopLimit = Math.min(assignees.length, 4);
 
   for (let i = 0; i < loopLimit; i++) {
-    const assignee = assignees[i];    
+    const assignee = assignees[i].name;    
     const bgColor = assignColor(assignee);
     html += `
       <div class="avatar" style="background-color: ${bgColor}">

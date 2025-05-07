@@ -3,9 +3,15 @@ let currentIndex = null;
 let newTask = null;
 let editSubtasksList = [];
 
-async function openTaskDialog(id, index) {
+async function openTaskDialog(id, index, taskId) {
+  console.log(id);
+  console.log(index);
+  
   currentDialog = document.getElementById(id);
   currentDialog.setAttribute("data-task-index", index);
+  currentDialog.setAttribute("data-task-id", taskId);
+  console.log("taskId: ", taskId);
+  
   currentIndex = index;
   newTask = { ...boardTasks[currentIndex] };
 
@@ -20,9 +26,9 @@ function renderDialog(index) {
   renderTaskCategory(boardTasks[index].category);
   renderTaskTitle(boardTasks[index].title);
   renderTaskDescription(boardTasks[index].description);
-  renderTaskDueDate(boardTasks[index].date);
+  renderTaskDueDate(boardTasks[index].due_date);
   renderTaskPriority(boardTasks[index].priority);
-  renderTaskAssignees(boardTasks[index].assignees);
+  renderTaskAssignees(boardTasks[index].assigned_to);
   renderTaskSubtasks(boardTasks[index].subtasks);
 }
 
@@ -110,7 +116,8 @@ function renderTaskSubtasks(subtasks) {
   } else {
     for (let i = 0; i < subtasks.length; i++) {
       const subtask = subtasks[i];
-      editSubtasksList.push(subtask.name);
+      
+      editSubtasksList.push(subtask);
       dialogSubtasksContainer.innerHTML += renderTaskSubtaskHtml(i, subtask);
     }
   }
@@ -140,10 +147,12 @@ async function toggleSubtaskState(index) {
  * This function removes the task from the boardTasks array, saves the updated tasks,
  * renders the board with the updated tasks, closes the dialog, and displays a toast message.
  */
-async function deleteTask() {
+async function deleteSingleTask() {
+  let taskId = currentDialog.getAttribute("data-task-id");
   let index = currentDialog.getAttribute("data-task-index");
+
   boardTasks.splice(index, 1);
-  await saveTasks(boardTasks);
+  await deleteTask(taskId);
   renderBoard(boardTasks);
   closeDialogForce();
   showToast("Task deleted.");
@@ -159,8 +168,8 @@ function editTask() {
 
   editTaskTitle(boardTasks[index].title);
   editTaskDescription(boardTasks[index].description);
-  editTaskDialogAssignedToAvatars(boardTasks[index].assignees);
-  editTaskDialogDueDate(boardTasks[index].date);
+  editTaskDialogAssignedToAvatars(boardTasks[index].assigned_to);
+  editTaskDialogDueDate(boardTasks[index].due_date);
   editTaskChooseCategory(boardTasks[index].category);
   editTaskRenderAssignedTo();
   editTaskInitPriorityButtons();
@@ -271,7 +280,9 @@ function editTaskShowAvatars() {
   let assignedContacts = newTask.assignees;
 
   for (let i = 0; i < assignedContacts.length; i++) {
-    const contact = assignedContacts[i];
+    const contact = assignedContacts[i].name;
+    console.log(contact);
+    
     const bgColor = assignColor(contact);
     avatarContainer.innerHTML += addTaskShowAvatarsHtml(bgColor, contact);
   }
@@ -312,12 +323,12 @@ function editTaskAssignedToSearch(event) {
  * Displays avatars for assigned contacts in the edit task dialog.
  * @param {Array} assignees - An array containing assigned contacts for the task.
  */
-function editTaskDialogAssignedToAvatars(assignees) {
+function editTaskDialogAssignedToAvatars(assignees) {  
   const avatarContainer = document.getElementById("add-task-assigned-avatar-edit");
   avatarContainer.innerHTML = "";
-
+  
   for (let i = 0; i < assignees.length; i++) {
-    const contact = assignees[i];
+    const contact = assignees[i].name;    
     const bgColor = assignColor(contact);
     avatarContainer.innerHTML += addTaskShowAvatarsHtml(bgColor, contact);
   }

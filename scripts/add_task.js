@@ -5,15 +5,18 @@ let globalCategory = "";
 let globalSubtasks = [];
 let subtasksList = [];
 let assignedContacts = [];
+let assignedContactsId = []
 let contactsToAssigned = [];
-let globalBoardCategory = "to-do";
+let globalBoardCategory = "TO_DO";
 
 async function initAddTask() {
   authGuard();
   await init();
   setNavActive("add-task");
   allTasks = await getTasks();
-  contactsToAssigned = await getContacts();
+  contactsToAssigned = await getAllContacts();
+  console.log("contactsToAssigned: ", contactsToAssigned);
+  
   createAssignedTo();
   getCategoryFromUrl();
 }
@@ -62,15 +65,20 @@ function addTaskDescription() {
 function addTaskAssignedTo() {
   const checkBoxes = document.querySelectorAll(".add-task-checkbox");
   assignedContacts = [];
+  assignedContactsId = [];
 
-  for (let i = 0; i < checkBoxes.length; i++) {
+  
+  for (let i = 0; i < checkBoxes.length; i++) {    
     if (checkBoxes[i].checked) {
-      const value = checkBoxes[i].value;
+      const value = checkBoxes[i].value;      
+      const valueId = checkBoxes[i].id;      
+
       assignedContacts.push(value);
+      assignedContactsId.push(valueId);
     }
   }
   addTaskShowAvatars();
-  return assignedContacts;
+  return assignedContactsId;
 }
 
 /**
@@ -146,22 +154,23 @@ async function addTaskCreateTask() {
   const date = addTaskDueDate();
 
   const newTask = {
-    boardCategory: globalBoardCategory,
+    board: globalBoardCategory,
     title: title,
     description: description,
-    assignees: names,
-    date: date,
+    assigned_to: names,
+    due_date: date,
     priority: globalPrio,
     category: globalCategory === "" ? addTaskChooseCategoryManually() : globalCategory,
     subtasks: [],
   };
 
+  debugger
   tasks.push(newTask);
-
   addGlobalSubtasksToTask(tasks.length - 1, globalSubtasks, tasks);
-
-  await saveTasks(tasks);
-  addTaskClearFormularReset();
+  console.log(newTask);
+  
+  await saveTask(newTask);
+  // addTaskClearFormularReset();
   addTaskCreateTaskConfirmation();
 }
 
@@ -174,7 +183,7 @@ function addGlobalSubtasksToTask(taskIndex, subtasks, tasks) {
   if (subtasks.length > 0) {
     for (let i = 0; i < subtasks.length; i++) {
       const subtaskName = subtasks[i];
-      tasks[taskIndex].subtasks.push({ name: subtaskName, completed: false });
+      tasks[taskIndex].subtasks.push({ description: subtaskName, completed: false });
     }
   }
 }
@@ -204,12 +213,13 @@ contactsToAssigned.sort(compareByName);
  * Iterates through the list of contacts to be assigned and generates HTML for each contact.
  */
 function createAssignedTo() {
-  for (let i = 0; i < contactsToAssigned.length; i++) {
+  for (let i = 0; i < contactsToAssigned.length; i++) {    
     const contact = contactsToAssigned[i].name;
+    const contactId = contactsToAssigned[i].id;
     const createContactsContainer = document.getElementById("add-task-contact");
     const bgColor = assignColor(contact);
 
-    createContactsContainer.innerHTML += addTaskAssignedToHtml(i, bgColor, contact);
+    createContactsContainer.innerHTML += addTaskAssignedToHtml(contactId, bgColor, contact);
   }
 }
 
@@ -225,6 +235,8 @@ function addTaskShowAvatars() {
 
   for (let i = 0; i < assignedContacts.length; i++) {
     const contact = assignedContacts[i];
+    console.log(contact);
+    
     const bgColor = assignColor(contact);
     avatarContainer.innerHTML += addTaskShowAvatarsHtml(bgColor, contact);
   }

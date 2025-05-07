@@ -14,12 +14,12 @@ function addTaskMinimumDate() {
  * Updates the priority toggle buttons based on the provided priority value.
  * @param {string} prio - The priority value ('urgent', 'medium', or 'low').
  */
-function addTaskPrioToggleButton(prio, container) {
+function addTaskPrioToggleButton(prio, container) {  
   const buttonContainer = document.getElementById(container);
   const buttons = buttonContainer.children;
 
   for (const button of buttons) {
-    if (button.dataset.priority == prio) {
+    if (button.dataset.priority == prio.toLocaleLowerCase()) {
       button.classList.add("add-task-clicked");
       button.children[0].children[1].src = `./assets/icons/priority=${button.dataset.priority}_white.svg`;
     } else {
@@ -255,22 +255,23 @@ function addTaskCreateTaskConfirmation() {
   }, 2000);
 }
 
-function addTaskShowAvatarsHtml(bgColor, contact) {
+function addTaskShowAvatarsHtml(bgColor, contact) {    
   return /*html*/ `
   <div class="avatar" style="background-color: ${bgColor};">${getUserInitials(contact)}</div>
   `;
 }
 
-function addTaskAssignedToHtml(i, bgColor, contact) {
+function addTaskAssignedToHtml(contactId, bgColor, contact) {
+
   return /*html*/ `
     <li>
-      <label for="person${i}">
+      <label for="${contactId}">
         <span class="avatar" style="background-color: ${bgColor};">${getUserInitials(
     contact
   )}</span>
         <span>${contact}</span>
       </label>
-      <input class="add-task-checkbox" type="checkbox" name="person[${i}]" id="person${i}" value="${contact}" onclick="addTaskAssignedTo()">
+      <input class="add-task-checkbox" type="checkbox" name="${contactId}" id="${contactId}" value="${contact}" onclick="addTaskAssignedTo()">
     </li>
   `;
 }

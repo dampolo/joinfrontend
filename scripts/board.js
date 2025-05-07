@@ -60,6 +60,8 @@ function renderBoard(tasks) {
  * @returns {string} HTML string representing the tasks.
  */
 function renderTasks(tasks) {
+  // console.log(tasks);
+  
   let html = "";
 
   tasks.forEach((task) => {

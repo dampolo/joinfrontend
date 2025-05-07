@@ -69,7 +69,7 @@
             id="add-task-urgent"
             class="add-task-urgent"
             name="prio"
-            onclick="addTaskPrio('urgent', 'add-task-urgent-medium-low-buttons', event)"
+            onclick="addTaskPrio('URGENT', 'add-task-urgent-medium-low-buttons', event)"
             data-priority="urgent"
           >
             <div class="add-task-important">
@@ -80,7 +80,7 @@
           <button
             id="add-task-medium"
             class="add-task-medium add-task-clicked"
-            onclick="addTaskPrio('medium', 'add-task-urgent-medium-low-buttons', event)"
+            onclick="addTaskPrio('MEDIUM', 'add-task-urgent-medium-low-buttons', event)"
             data-priority="medium"
           >
             <div class="add-task-important">
@@ -91,7 +91,7 @@
           <button
             id="add-task-low"
             class="add-task-low"
-            onclick="addTaskPrio('low', 'add-task-urgent-medium-low-buttons', event)"
+            onclick="addTaskPrio('LOW', 'add-task-urgent-medium-low-buttons', event)"
             data-priority="low"
           >
             <div class="add-task-important">
@@ -122,7 +122,7 @@
                   type="radio"
                   name="category"
                   id="technical-task"
-                  value="Technical Task"
+                  value="TECHNICAL_TASK"
                   onclick="addTaskChooseCategory(this.value)"
               /></label>
             </li>
@@ -133,7 +133,7 @@
                   type="radio"
                   name="category"
                   id="user-story"
-                  value="User Story"
+                  value="USER_STORY"
                   onclick="addTaskChooseCategory(this.value)"
               /></label>
             </li>

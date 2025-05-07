@@ -10,7 +10,7 @@ const STORAGE_TOKEN = "N5WAMIGSG8DUOHKFD7VXKHVD6CGSIEVVWLAYN5AL";
  */
 // const STORAGE_URL = "https://remote-storage.developerakademie.org/item";
 const fetchGetUserUrl = "http://127.0.0.1:8000/api/users/";
-const fetchGetAllTasksUrl = "http://127.0.0.1:8000/api/tasks";
+const fetchGetAllTasksUrl = "http://127.0.0.1:8000/api/tasks/";
 const fetchLogin = "http://127.0.0.1:8000/auth/login/";
 const fetchRegistration = "http://127.0.0.1:8000/auth/registration/";
 
@@ -100,6 +100,51 @@ async function saveUsers(userData) {
     return user
   } catch (error) {
     console.error("Error fetching data:", error);
+    return { status: "error", message: error.message };
+  }
+}
+
+async function saveTask(newTask) {
+  const url = `${fetchGetAllTasksUrl}`;
+  try {
+    const res = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newTask),
+    });
+    if (!res.ok) {
+      throw new Error(`HTTP error! Status: ${res.status}`);
+    }
+
+    const task = await res.json();
+    return task
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    return { status: "error", message: error.message };
+  }
+}
+
+async function deleteTask(taskId) {
+  const url = `${fetchGetAllTasksUrl}${taskId}/`;
+  try {
+    const res = await fetch(url, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    if (!res.ok) {
+      throw new Error(`HTTP error! Status: ${res.status}`);
+    }
+
+    // If the response has no content (204), just return a success indicator
+    return { status: "success" };
+
+  } catch (error) {
+    console.error("Error deleting task:", error);
     return { status: "error", message: error.message };
   }
 }

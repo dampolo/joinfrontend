@@ -21,9 +21,9 @@ function renderTaskAssigneeHtml(assignee, bgColor) {
   return `
     <div class="assignee">
       <div class="avatar" style="background-color: ${bgColor}">
-        ${getUserInitials(assignee)}
+        ${getUserInitials(assignee.name)}
       </div>
-      <div class="assignee-name">${assignee}</div>
+      <div class="assignee-name">${assignee.name}</div>
     </div>
   `;
 }
@@ -36,7 +36,7 @@ function renderTaskSubtaskHtml(index, subtask) {
           ${subtask.completed ? "checked" : ""} onclick="toggleSubtaskState(${index})"
         />
         <div class="checkbox-icon"></div>
-        <div class="checkbox-label">${subtask.name}</div>
+        <div class="checkbox-label">${subtask.description}</div>
       </label>
     </div>
   `;
