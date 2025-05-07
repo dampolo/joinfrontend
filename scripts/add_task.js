@@ -13,11 +13,11 @@ async function initAddTask() {
   authGuard();
   await init();
   setNavActive("add-task");
-  allTasks = await getTasks();
+  allTasks = await getAllTasks();
   contactsToAssigned = await getAllContacts();
   console.log("contactsToAssigned: ", contactsToAssigned);
   
-  createAssignedTo();
+  createAssignedTo();  
   getCategoryFromUrl();
 }
 
@@ -146,7 +146,7 @@ function addTaskSubtasks(event) {
  * saves the updated tasks, resets the form, and displays a confirmation message.
  */
 async function addTaskCreateTask() {
-  let tasks = await getTasks();
+  let tasks = await getAllTasks();
 
   const title = addTaskTitle();
   const description = addTaskDescription();
@@ -164,7 +164,6 @@ async function addTaskCreateTask() {
     subtasks: [],
   };
 
-  debugger
   tasks.push(newTask);
   addGlobalSubtasksToTask(tasks.length - 1, globalSubtasks, tasks);
   console.log(newTask);
@@ -234,9 +233,7 @@ function addTaskShowAvatars() {
   avatarContainer.innerHTML = "";
 
   for (let i = 0; i < assignedContacts.length; i++) {
-    const contact = assignedContacts[i];
-    console.log(contact);
-    
+    const contact = assignedContacts[i];    
     const bgColor = assignColor(contact);
     avatarContainer.innerHTML += addTaskShowAvatarsHtml(bgColor, contact);
   }

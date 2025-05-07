@@ -208,7 +208,7 @@ function fadeOutToast() {
  * Opens a dialog by showing it on the screen.
  * @param {string} id - The ID of the dialog to be opened.
  */
-function openDialog(id) {
+async function openDialog(id) {
   const backdrop = document.getElementById("backdrop");
   const dialog = document.getElementById(id);
 
@@ -221,6 +221,9 @@ function openDialog(id) {
   }, 300);
 
   backdrop.addEventListener("click", closeDialog);
+  
+  contactsToAssigned = await getAllContacts();
+  createAssignedTo()
 }
 
 /**

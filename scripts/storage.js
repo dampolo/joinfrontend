@@ -44,14 +44,6 @@ async function getAllTasks() {
 async function getAllContacts() {
   const url = `${fetchGetUserUrl}`;
   const res = await fetch(url);
-
-  // const res = await fetch(url, {
-  //   method: "GET",
-  //   headers: {
-  //     'Authorization': `Token ${getLoggedInUser().token}`,
-  //     'Content-Type': 'application/json',
-  //   },
-  // })
   if (!res.ok) {
     throw new Error(`HTTP error! Status: ${res.status}`);
   }
@@ -140,7 +132,6 @@ async function deleteTask(taskId) {
       throw new Error(`HTTP error! Status: ${res.status}`);
     }
 
-    // If the response has no content (204), just return a success indicator
     return { status: "success" };
 
   } catch (error) {

@@ -153,7 +153,7 @@ async function deleteSingleTask() {
 
   boardTasks.splice(index, 1);
   await deleteTask(taskId);
-  renderBoard(boardTasks);
+  renderBoard()
   closeDialogForce();
   showToast("Task deleted.");
 }

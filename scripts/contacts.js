@@ -452,7 +452,7 @@ async function deleteUser(userId) {
  * @returns {Promise<void>}
  */
 async function unassignFromTasks(name) {
-	let tasks = await getTasks();
+	let tasks = await getAllTasks();
 	tasks.forEach((task) => {
 		task.assignees = task.assignees.filter((assignee) => assignee !== name);
 	});
