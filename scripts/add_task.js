@@ -164,6 +164,8 @@ async function addTaskCreateTask() {
     subtasks: [],
   };
 
+  console.log(newTask);
+  
   tasks.push(newTask);
   addGlobalSubtasksToTask(tasks.length - 1, globalSubtasks, tasks);
   console.log(newTask);

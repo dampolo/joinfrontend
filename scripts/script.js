@@ -82,7 +82,7 @@ function closeHeaderMenu(event) {
  * @param {string} name - The name from which to generate initials.
  * @returns {string} The initials generated from the name.
  */
-function getUserInitials(assignedTo) {
+function getUserInitials(assignedTo) {  
   let initials = "";
   const nameParts = assignedTo.split(" ");
   for (let i = 0; i < nameParts.length; i++) {
@@ -221,7 +221,7 @@ async function openDialog(id) {
   }, 300);
 
   backdrop.addEventListener("click", closeDialog);
-  
+
   contactsToAssigned = await getAllContacts();
   createAssignedTo()
 }

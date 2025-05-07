@@ -29,6 +29,7 @@ function renderDialog(index) {
   renderTaskDueDate(boardTasks[index].due_date);
   renderTaskPriority(boardTasks[index].priority);
   renderTaskAssignees(boardTasks[index].assigned_to);
+  assignedToId(boardTasks[index].assigned_to)
   renderTaskSubtasks(boardTasks[index].subtasks);
 }
 
@@ -88,6 +89,7 @@ function renderTaskPriority(priority) {
  * @param {*} assignees - An array containing the assignees of the task to be rendered.
  */
 function renderTaskAssignees(assignees) {
+
   const dialogAssignedToContainer = document.getElementById("dialog-assigned-to-container");
   dialogAssignedToContainer.innerHTML = "";
 
@@ -99,6 +101,13 @@ function renderTaskAssignees(assignees) {
       const bgColor = assignColor(assignee.name);
       dialogAssignedToContainer.innerHTML += renderTaskAssigneeHtml(assignee, bgColor);
     }
+  }
+}
+
+function assignedToId(assignees) {
+  for (let i = 0; i < assignees.length; i++) {
+    const element = assignees[i];
+    return element
   }
 }
 
@@ -129,16 +138,30 @@ function renderTaskSubtasks(subtasks) {
  */
 async function toggleSubtaskState(index) {
   const taskIndex = currentDialog.getAttribute("data-task-index");
+
+  const taskId = currentDialog.getAttribute("data-task-id");
+  // debugger
   const subtaskIndex = index;
   const currentState = boardTasks[taskIndex].subtasks[subtaskIndex].completed;
-
+  
   if (currentState) {
     boardTasks[taskIndex].subtasks[subtaskIndex].completed = false;
   } else {
     boardTasks[taskIndex].subtasks[subtaskIndex].completed = true;
   }
 
-  await saveTasks(boardTasks);
+  const taskForUpdate = {
+    ...boardTasks[taskIndex],
+    assigned_to: boardTasks[taskIndex].assigned_to.map(user => user.id),
+    subtasks: boardTasks[taskIndex].subtasks.map(subtask => ({
+      completed: subtask.completed,
+      description: subtask.description,
+    })),
+  };
+  
+  console.log(taskForUpdate);
+  
+  await updateTask(taskId, taskForUpdate);
   renderBoard(boardTasks);
 }
 

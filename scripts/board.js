@@ -41,7 +41,6 @@ function renderBoard(tasks) {
   boardCategories.forEach((category) => {
     tasksContainer = document.getElementById(`TASKS_${category.name}`);
     tasksContainer.innerHTML = "";
-    
     filteredTasks = tasks.filter((task) => task.board === category.name);
 
     if (filteredTasks.length === 0) {
@@ -156,7 +155,7 @@ async function changeTaskCategory(event) {
   // boardTasks[elementIndex].board = category;
   console.log(currentTask);
   
-  await updateTask(currentTaskId, currentTask.board);
+  await updateTask(currentTaskId, { board: currentTask.board});
 
   renderBoard();
 }

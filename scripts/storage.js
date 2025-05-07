@@ -15,13 +15,15 @@ const fetchLogin = "http://127.0.0.1:8000/auth/login/";
 const fetchRegistration = "http://127.0.0.1:8000/auth/registration/";
 
 async function updateTask(taskId, payload) {
+  console.log("payload: ", payload);
+  
   const url = `${fetchGetAllTasksUrl}${taskId}/`;
   return fetch(url, {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ payload }),
+    body: JSON.stringify( payload ),
   });
 }
 
@@ -50,6 +52,17 @@ async function getAllContacts() {
   const task = await res.json();
   return task;
 }
+
+async function getSingleContacts(userId) {
+  const url = `${fetchGetUserUrl}${userId}/`;
+  const res = await fetch(url);
+  if (!res.ok) {
+    throw new Error(`HTTP error! Status: ${res.status}`);
+  }
+  const user = await res.json();
+  return user;
+}
+
 
 async function getUser(username, password) {
   const url = `${fetchLogin}`;
