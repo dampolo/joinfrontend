@@ -26,8 +26,8 @@ function taskCardTemplate(index, task, draggable) {
           <div class="changer close" onclick="closeChangeTaskCategoryOnMobile(event, ${index})">Cancel</div>
         </div>
         <div class ="card-body-header">
-          <div class="label ${task.category === "User Story" ? "user-story" : "technical-task"}">
-              <span>${task.category === "User Story" ? "User Story" : "Technical Task"}</span>
+          <div class="label ${task.category === "USER_STORY" ? "user-story" : "technical-task"}">
+              <span>${task.category === "USER_STORY" ? "User Story" : "Technical Task"}</span>
           </div>
           <div class="category-changer" onclick="openChangeTaskCategoryOnMobile(event, ${index})">
             <img src="assets/icons/board_black.svg" width="24" height="24" />

@@ -40,12 +40,13 @@ function renderDialog(index) {
 function renderTaskCategory(category) {
   const dialogCategoryContainer = document.getElementById("dialog-show-category-container");
   const dialogCategoryElement = document.getElementById("dialog-show-category");
-
-  let className = category.replace(/\s+/g, "-").toLowerCase();
+  let className = category.replace(/_/g, "-").toLowerCase();
   if(className) {
     dialogCategoryContainer.classList.add(className);
   }
-  dialogCategoryElement.innerHTML = category;
+
+  dialogCategoryElement.innerHTML = category === "USER_STORY" ? "USER STORY" : "TECHNICAL TASK";
+
 }
 
 /**
@@ -233,7 +234,6 @@ function saveEditTaskTitle() {
   const saveTaskElement = document.getElementById("add-task-title-input-edit");
   const newValue = saveTaskElement.value;
   newTask.title = newValue;
-  return newValue;
 }
 
 /**
@@ -253,7 +253,7 @@ function saveTaskDescription() {
   const saveDescriptionElement = document.getElementById("add-task-textarea-edit");
   const newValue = saveDescriptionElement.value;
   newTask.description = newValue;
-  return newValue;
+  // return newValue;
 }
 
 /**
@@ -305,9 +305,7 @@ function editTaskShowAvatars() {
   let assignedContacts = newTask.assignees;
 
   for (let i = 0; i < assignedContacts.length; i++) {
-    const contact = assignedContacts[i].name;
-    console.log(contact);
-    
+    const contact = assignedContacts[i];    
     const bgColor = assignColor(contact);
     avatarContainer.innerHTML += addTaskShowAvatarsHtml(bgColor, contact);
   }
@@ -384,8 +382,15 @@ function editTaskDialogPriority(priority, container, event) {
  * @param {*} category - The category value to be set for the task.
  */
 function editTaskChooseCategory(category) {
-  document.getElementById("add-task-category-edit").value = category;
-  newTask.category = category;
+  const selectedElement = category
+  if (category === "TECHNICAL_TASK") {
+    const category = "Technical Task"
+    document.getElementById("add-task-category-edit").value = category;
+  } else {
+    const category = "User Story"
+    document.getElementById("add-task-category-edit").value = category;
+  }
+  newTask.category = selectedElement;
 }
 
 /**
@@ -611,7 +616,6 @@ async function saveEditTask() {
       description: subtask.description,
     })),
   };
-  debugger
   
   await updateTask(taskId, taskForUpdate);
   renderBoard(boardTasks);

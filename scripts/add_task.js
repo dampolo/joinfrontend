@@ -109,8 +109,15 @@ function addTaskPrio(prio, container, event) {
  * @param {string} category - The ID of the element containing the selected category text.
  */
 function addTaskChooseCategory(category) {
-  selectElement = (document.getElementById("add-task-category").value = category);
-  globalCategory = selectElement;
+    const selectedElement = category
+  if (category === "TECHNICAL_TASK") {
+    const category = "Technical Task"
+    document.getElementById("add-task-category").value = category;
+  } else {
+    const category = "User Story"
+    document.getElementById("add-task-category").value = category;
+  }
+  globalCategory = selectedElement;  
 }
 
 function addTaskChooseCategoryManually() {
