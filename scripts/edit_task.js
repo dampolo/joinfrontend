@@ -206,7 +206,7 @@ function editTaskInitPriorityButtons() {
   for (let i = 0; i < priorityButtons.length; i++) {
     const button = priorityButtons[i];
 
-    if (button.dataset.priority == boardTasks[currentIndex].priority) {
+    if (button.dataset.priority === boardTasks[currentIndex].priority.toLowerCase()) {
       button.classList.add("add-task-clicked");
       button.children[0].children[1].src = `./assets/icons/priority=${button.dataset.priority}_white.svg`;
     } else {
@@ -375,8 +375,8 @@ function editTaskDialogDueDate(date) {
  * @param {*} event - The event object triggered by the user action.
  */
 function editTaskDialogPriority(priority, container, event) {
-  addTaskPrio(priority, container, event);
-  newTask.priority = priority;
+  addTaskPrio(priority, container, event);  
+  newTask.priority = priority.toUpperCase();
 }
 
 /**
@@ -398,7 +398,7 @@ function editRenderTaskSubtasksList(subtasksObject) {
 
   for (let i = 0; i < subtasksObject.length; i++) {
     const subtasks = subtasksObject[i];
-    const subtasksName = subtasks.name;
+    const subtasksName = subtasks.description;
     lists.innerHTML += editRenderTaskSubtasksListHtml(i, subtasksName);
   }
 }
@@ -595,12 +595,26 @@ function confirmTaskSubtasksListInBoard(i, event) {
 async function saveEditTask() {
   document.getElementById("task-edit-dialog").classList.add("d-none");
   document.getElementById("task-show-dialog").classList.remove("d-none");
-  renderDialog(currentIndex);
+  // renderDialog(currentIndex);
+  const taskId = currentDialog.getAttribute("data-task-id");
+  const taskIndex = currentDialog.getAttribute("data-task-index");
   saveEditTaskTitle();
   saveTaskDescription();
-
+  
   boardTasks[currentIndex] = newTask;
-  await saveTasks(boardTasks);
+  
+  const taskForUpdate = {
+    ...boardTasks[taskIndex],
+    assigned_to: boardTasks[taskIndex].assigned_to.map(user => user.id),
+    subtasks: boardTasks[taskIndex].subtasks.map(subtask => ({
+      completed: subtask.completed,
+      description: subtask.description,
+    })),
+  };
+  debugger
+  
+  await updateTask(taskId, taskForUpdate);
   renderBoard(boardTasks);
+  renderDialog(taskIndex)
   initBoard();
 }

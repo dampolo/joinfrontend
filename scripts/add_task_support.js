@@ -19,7 +19,7 @@ function addTaskPrioToggleButton(prio, container) {
   const buttons = buttonContainer.children;
 
   for (const button of buttons) {
-    if (button.dataset.priority == prio.toLocaleLowerCase()) {
+    if (button.dataset.priority == prio.toLowerCase()) {
       button.classList.add("add-task-clicked");
       button.children[0].children[1].src = `./assets/icons/priority=${button.dataset.priority}_white.svg`;
     } else {
