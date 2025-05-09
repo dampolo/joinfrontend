@@ -366,6 +366,11 @@ function editTaskDialogDueDate(date) {
   editDateEL.value = date;
 }
 
+function saveEditTaskDialogDueDate() {
+  const newDueDate = document.getElementById("date-edit").value;
+  newTask.due_date = newDueDate;
+}
+
 /**
  * Updates the priority of the task in the edit task dialog.
  * @param {*} priority - The priority value to be set for the task.
@@ -605,7 +610,8 @@ async function saveEditTask() {
   const taskIndex = currentDialog.getAttribute("data-task-index");
   saveEditTaskTitle();
   saveTaskDescription();
-  
+  saveEditTaskDialogDueDate();
+
   boardTasks[currentIndex] = newTask;
   
   const taskForUpdate = {

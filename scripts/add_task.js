@@ -87,7 +87,7 @@ function addTaskAssignedTo() {
  */
 function addTaskDueDate() {
   const date = document.getElementById("date").value;
-  document.getElementById("date").value = "";
+  // document.getElementById("date").value = "";
   return date;
 }
 
