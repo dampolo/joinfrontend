@@ -152,3 +152,48 @@ async function deleteTask(taskId) {
     return { status: "error", message: error.message };
   }
 }
+
+async function deleteContact(contactId) {
+  const url = `${fetchGetUserUrl}${contactId}/`;
+  try {
+    const res = await fetch(url, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    if (!res.ok) {
+      throw new Error(`HTTP error! Status: ${res.status}`);
+    }
+
+    return { status: "success" };
+
+  } catch (error) {
+    console.error("Error deleting task:", error);
+    return { status: "error", message: error.message };
+  }
+}
+
+async function saveSingleContact(newContact) {
+  debugger
+  const url = `${fetchGetUserUrl}`;
+  try {
+    const res = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newContact),
+    });
+    if (!res.ok) {
+      throw new Error(`HTTP error! Status: ${res.status}`);
+    }
+
+    const task = await res.json();
+    return task
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    return { status: "error", message: error.message };
+  }
+}

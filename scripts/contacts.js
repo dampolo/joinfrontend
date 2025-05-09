@@ -139,15 +139,16 @@ async function addContact() {
 	const phone = getContactPhone();
 
 	const contact = {
-		userId: null,
+		// userId: null,
 		name: name,
 		email: email,
 		phone: phone,
 	};
 
 	try {
-		allContacts.push(contact);
-		await saveContacts(allContacts);
+		// allContacts.push(contact);
+		await saveSingleContact(contact)
+		// await saveContacts(allContacts);
 		allContacts = await getContacts();
 		closeCreateContact();
 		deleteValues();
@@ -222,6 +223,7 @@ async function renderContacts(contacts) {
 
 	for (let i = 0; i < contacts.length; i++) {                              
 		const contact = contacts[i];
+		const contactId = contacts[i].id
 		const firstLetter = contact.name[0].toUpperCase();
 
 		if (!usedLetters.has(firstLetter)) {
@@ -235,7 +237,7 @@ async function renderContacts(contacts) {
 
 		bgColor = assignColor(contact.name);
 		let nameFirstLetters = getnameFirstLetters(contact.name);
-		contactListContainer.innerHTML += contactTemplate(contact, i, bgColor, nameFirstLetters);
+		contactListContainer.innerHTML += contactTemplate(contact, i, bgColor, nameFirstLetters, contactId);
 	}
 }
 
@@ -243,7 +245,9 @@ async function renderContacts(contacts) {
  * Renders the contact information.
  * @param {number} index - The index of the contact.
  */
-function renderInfo(index) {
+function renderInfo(index, contactId) {
+	console.log(index, contactId);
+	
 	currentContactIndex = index;
 	const infoContainer = document.getElementById('info-wrapper');
 	const displayContainer = document.getElementById('contacts-display-wrapper');
@@ -253,7 +257,7 @@ function renderInfo(index) {
 	const firstLetters = getnameFirstLetters(allContacts[index].name);
 
 	infoContainer.innerHTML = '';
-	infoContainer.innerHTML = contactInfoTemplate(index, bgColor, firstLetters);
+	infoContainer.innerHTML = contactInfoTemplate(index, bgColor, firstLetters, contactId);
 	infoContainer.classList.remove('d-none');
 	infoContainer.classList.add('slide-from-right');
 
@@ -333,19 +337,18 @@ function getnameFirstLetters(name) {
  * @param {number} index - The index of the contact to be deleted.
  * @returns {Promise<void>}
  */
-async function deleteContact(index) {
+async function deleteSingleContact(index, contactId) {
 	const content = document.getElementById('info-wrapper');
-
-
 	if(allContacts[index].userId){
 		await deleteUser(allContacts[index].userId);
 	}
-
+	debugger
 	unassignFromTasks(allContacts[index].name);
 	allContacts.splice(index, 1);
-	await saveContacts(allContacts);
+	await deleteContact(contactId)
+	// await saveContacts(allContacts);
 	content.innerHTML = '';
-	renderContacts(allContacts);
+	renderContacts(allContacts);	
 	closeEditContact();
 	closeDeleteConfirmation();
 	showToast('Contact deleted.');
@@ -381,7 +384,9 @@ async function updateContact(event, index) {
 }
 
 
-function showDeleteConfirmation(index) {
+function showDeleteConfirmation(index, contactId) {
+	console.log(index, contactId);
+	
 	let background = document.getElementById('delete-confirmation-bg');
 	let content = document.getElementById('delete-confirmation')
 
@@ -399,7 +404,7 @@ function showDeleteConfirmation(index) {
 	}, 300);
 
 	content.innerHTML = '';
-	content.innerHTML += deleteConfirmationTemplate(index);
+	content.innerHTML += deleteConfirmationTemplate(index, contactId);
 
 }
 
