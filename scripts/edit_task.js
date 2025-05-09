@@ -195,7 +195,7 @@ function editTask() {
   editTaskDialogAssignedToAvatars(boardTasks[index].assigned_to);
   editTaskDialogDueDate(boardTasks[index].due_date);
   editTaskChooseCategory(boardTasks[index].category);
-  editTaskRenderAssignedTo();
+  editTaskRenderAssignedTo(boardTasks[index].assigned_to);
   editTaskInitPriorityButtons();
   editRenderTaskSubtasksList(boardTasks[index].subtasks);
 }
@@ -262,37 +262,47 @@ function saveEditTaskDescription() {
  * the contacts to be assigned, determines their background color, and generates
  * HTML elements for each contact to display them in the edit task dialog.
  */
-function editTaskRenderAssignedTo() {
+function editTaskRenderAssignedTo(assignedToTask) {
   const createContactsContainer = document.getElementById("add-task-contact-edit");
   createContactsContainer.innerHTML = "";
 
   for (let i = 0; i < contactsToAssigned.length; i++) {
     
     const contact = contactsToAssigned[i].name;
+    const contactId = contactsToAssigned[i].id;
     const bgColor = assignColor(contact);
-    const assigned = newTask.assigned_to.includes(contact);
-    
 
+    const isAssigned = assignedToTask.some(obj => obj.id === contactId);    
+    
     createContactsContainer.innerHTML += editTaskRenderAssignedToHtml(
-      i,
+      contactId,
       bgColor,
       contact,
-      assigned
+      isAssigned
     );
   }
 }
 
 function editTaskAssignedTo() {
   const checkBoxes = document.querySelectorAll(".add-task-checkbox-edit");
-  newTask.assignees = [];
+  newTask.assigned_to = [];
 
-  for (let i = 0; i < checkBoxes.length; i++) {
-    const checkbox = checkBoxes[i];
 
-    if (checkbox.checked) {
-      newTask.assignees.push(checkbox.value);
+  for (let i = 0; i < checkBoxes.length; i++) {    
+    if (checkBoxes[i].checked) {
+      const value = checkBoxes[i].value;      
+      const valueId = checkBoxes[i].id;      
+
+      console.log(value);
+      console.log(valueId);
+      
+      
+      // newTask.assigned_to.push(value);      
     }
   }
+
+  console.log(newTask.assigned_to);
+  
   editTaskShowAvatars();
 }
 
@@ -302,7 +312,7 @@ function editTaskAssignedTo() {
 function editTaskShowAvatars() {
   const avatarContainer = document.getElementById("add-task-assigned-avatar-edit");
   avatarContainer.innerHTML = "";
-  let assignedContacts = newTask.assignees;
+  let assignedContacts = newTask.assigned_to;
 
   for (let i = 0; i < assignedContacts.length; i++) {
     const contact = assignedContacts[i];    

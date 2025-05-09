@@ -93,8 +93,6 @@ function getUserInitials(assignedTo) {
 
 
 function getLoggedUserInitials(name) {
-  console.log(name);
-
   let initials = ""
   
   if(name.name !== "Guest") {
