@@ -249,7 +249,7 @@ function editTaskDescription(description) {
  * Read the value from the input title
  * @returns {string} The new value read from the input title
  */
-function saveTaskDescription() {
+function saveEditTaskDescription() {
   const saveDescriptionElement = document.getElementById("add-task-textarea-edit");
   const newValue = saveDescriptionElement.value;
   newTask.description = newValue;
@@ -609,7 +609,7 @@ async function saveEditTask() {
   const taskId = currentDialog.getAttribute("data-task-id");
   const taskIndex = currentDialog.getAttribute("data-task-index");
   saveEditTaskTitle();
-  saveTaskDescription();
+  saveEditTaskDescription();
   saveEditTaskDialogDueDate();
 
   boardTasks[currentIndex] = newTask;
