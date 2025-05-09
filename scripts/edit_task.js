@@ -366,7 +366,7 @@ function editTaskDialogDueDate(date) {
   editDateEL.value = date;
 }
 
-function saveEditTaskDialogDueDate() {
+function saveEditTaskDueDate() {
   const newDueDate = document.getElementById("date-edit").value;
   newTask.due_date = newDueDate;
 }
@@ -610,7 +610,7 @@ async function saveEditTask() {
   const taskIndex = currentDialog.getAttribute("data-task-index");
   saveEditTaskTitle();
   saveEditTaskDescription();
-  saveEditTaskDialogDueDate();
+  saveEditTaskDueDate();
 
   boardTasks[currentIndex] = newTask;
   
