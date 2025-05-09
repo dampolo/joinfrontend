@@ -29,7 +29,6 @@ function renderDialog(index) {
   renderTaskDueDate(boardTasks[index].due_date);
   renderTaskPriority(boardTasks[index].priority);
   renderTaskAssignees(boardTasks[index].assigned_to);
-  assignedToId(boardTasks[index].assigned_to)
   renderTaskSubtasks(boardTasks[index].subtasks);
 }
 
@@ -102,13 +101,6 @@ function renderTaskAssignees(assignees) {
       const bgColor = assignColor(assignee.name);
       dialogAssignedToContainer.innerHTML += renderTaskAssigneeHtml(assignee, bgColor);
     }
-  }
-}
-
-function assignedToId(assignees) {
-  for (let i = 0; i < assignees.length; i++) {
-    const element = assignees[i];
-    return element
   }
 }
 
@@ -286,22 +278,21 @@ function editTaskRenderAssignedTo(assignedToTask) {
 function editTaskAssignedTo() {
   const checkBoxes = document.querySelectorAll(".add-task-checkbox-edit");
   newTask.assigned_to = [];
-
+  assignedToId = [];
 
   for (let i = 0; i < checkBoxes.length; i++) {    
     if (checkBoxes[i].checked) {
-      const value = checkBoxes[i].value;      
-      const valueId = checkBoxes[i].id;      
-
-      console.log(value);
-      console.log(valueId);
+      const contact = checkBoxes[i].value;      
+      const contactId = checkBoxes[i].id;      
+   
       
-      
-      // newTask.assigned_to.push(value);      
+      newTask.assigned_to.push({
+        id: contactId,
+        name: contact
+      });
+      assignedToId.push(contactId);    
     }
-  }
-
-  console.log(newTask.assigned_to);
+  }  
   
   editTaskShowAvatars();
 }
@@ -315,7 +306,7 @@ function editTaskShowAvatars() {
   let assignedContacts = newTask.assigned_to;
 
   for (let i = 0; i < assignedContacts.length; i++) {
-    const contact = assignedContacts[i];    
+    const contact = assignedContacts[i].name;    
     const bgColor = assignColor(contact);
     avatarContainer.innerHTML += addTaskShowAvatarsHtml(bgColor, contact);
   }
@@ -621,9 +612,9 @@ async function saveEditTask() {
   saveEditTaskTitle();
   saveEditTaskDescription();
   saveEditTaskDueDate();
-
-  boardTasks[currentIndex] = newTask;
   
+  boardTasks[currentIndex] = newTask;
+  debugger
   const taskForUpdate = {
     ...boardTasks[taskIndex],
     assigned_to: boardTasks[taskIndex].assigned_to.map(user => user.id),
