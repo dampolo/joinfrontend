@@ -40,7 +40,11 @@ function renderTaskCategory(category) {
   const dialogCategoryContainer = document.getElementById("dialog-show-category-container");
   const dialogCategoryElement = document.getElementById("dialog-show-category");
   let className = category.replace(/_/g, "-").toLowerCase();
-  if(className) {
+  if(className === "technical-task") {
+    dialogCategoryContainer.classList.remove("user-story");
+    dialogCategoryContainer.classList.add(className);
+  } else {
+    dialogCategoryContainer.classList.remove("technical-task");
     dialogCategoryContainer.classList.add(className);
   }
 
@@ -151,9 +155,7 @@ async function toggleSubtaskState(index) {
       description: subtask.description,
     })),
   };
-  
-  console.log(taskForUpdate);
-  
+    
   await updateTask(taskId, taskForUpdate);
   renderBoard(boardTasks);
 }
@@ -504,8 +506,9 @@ function editTaskSubtasksListInBoard(param, event) {
   ulElement.innerHTML = "";
 
   for (let i = 0; i < editSubtasksList.length; i++) {
-    const lists = editSubtasksList[i];
-
+    const subtaskDescription = editSubtasksList[i].description;
+    
+debugger
     if (i === param) {
       let liElement = document.createElement("li");
       liElement.setAttribute("class", "add-task-subtask-li-edit");
@@ -545,14 +548,14 @@ function editTaskSubtasksListInBoard(param, event) {
 
       ulElement.appendChild(liElement);
 
-      inputElement.value = lists;
+      inputElement.value = subtaskDescription;
     } else {
       let listItem = document.createElement("li");
       let spanElement = document.createElement("span");
       spanElement.className = "add-task-subtasks-extra-task";
       spanElement.id = "add-task-subtasks-extra-task";
 
-      let textContent = document.createTextNode(lists);
+      let textContent = document.createTextNode(subtaskDescription);
       spanElement.appendChild(textContent);
 
       let iconsDiv = document.createElement("div");
