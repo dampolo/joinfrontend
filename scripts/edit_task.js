@@ -447,7 +447,8 @@ function editAddTaskSubtasksList() {
   lists.innerHTML = "";
 
   for (let i = 0; i < editSubtasksList.length; i++) {
-    const subtasks = editSubtasksList[i];
+    debugger
+    const subtasks = editSubtasksList[i].description;
     lists.innerHTML += editAddTaskSubtasksListHtml(i, subtasks);
   }
 }
@@ -507,8 +508,6 @@ function editTaskSubtasksListInBoard(param, event) {
 
   for (let i = 0; i < editSubtasksList.length; i++) {
     const subtaskDescription = editSubtasksList[i].description;
-    
-debugger
     if (i === param) {
       let liElement = document.createElement("li");
       liElement.setAttribute("class", "add-task-subtask-li-edit");
