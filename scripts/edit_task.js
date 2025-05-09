@@ -422,16 +422,16 @@ function editRenderTaskSubtasksList(subtasksObject) {
  * @returns void
  */
 function editAddTaskSubtasks(event) {
+  
   if (event.type === "keypress" && event.key !== "Enter") return;
-
   event.preventDefault();
   const subtasks = document.getElementById("add-task-subtasks-input-edit");
   const subtaskValue = subtasks.value.trim();
 
   if (!subtaskValue) return;
-
-  newTask.subtasks.unshift({ name: subtaskValue, completed: false });
-  editSubtasksList.unshift(subtaskValue);
+debugger
+  newTask.subtasks.unshift({ completed: false, description: subtaskValue });
+  editSubtasksList.unshift({ completed: false, description: subtaskValue });
   editAddTaskSubtasksList(); //Create the element from Subtasks input
   document.getElementById("add-task-subtasks-icon-plus-edit").classList.remove("d-none");
   document.getElementById("add-task-subtasks-icon-plus-check-edit").classList.add("d-none");
@@ -447,7 +447,6 @@ function editAddTaskSubtasksList() {
   lists.innerHTML = "";
 
   for (let i = 0; i < editSubtasksList.length; i++) {
-    debugger
     const subtasks = editSubtasksList[i].description;
     lists.innerHTML += editAddTaskSubtasksListHtml(i, subtasks);
   }
@@ -588,17 +587,18 @@ function editTaskSubtasksListInBoard(param, event) {
 }
 
 function confirmTaskSubtasksListInBoard(i, event) {
+  event.stopPropagation();
   if (event.type === "keypress" && event.key !== "Enter") return;
-  
-  event.preventDefault();
   const subtasks = document.getElementById("edit-task-subtasks-input-edit");
   const subtaskValue = subtasks.value.trim();
-
+  
   if (!subtaskValue) return;
+  
+  const subtaskValueObject = { completed: false, description: subtaskValue }
  
-  editSubtasksList.splice(i, 1, subtaskValue);
-  indexOfSubtasks = { name: subtaskValue, completed: false };
-  newTask.subtasks.splice(i, 1, indexOfSubtasks);
+  editSubtasksList.splice(i, 1, subtaskValueObject);
+  newTask.subtasks.splice(i, 1, subtaskValueObject);
+
   editAddTaskSubtasksList();
 }
 
