@@ -176,7 +176,6 @@ async function deleteContact(contactId) {
 }
 
 async function saveSingleContact(newContact) {
-  debugger
   const url = `${fetchGetUserUrl}`;
   try {
     const res = await fetch(url, {

@@ -24,6 +24,8 @@ async function initBoard() {
   await init();
   setNavActive("board");
   boardTasks = await getAllTasks();
+  console.log("boardTasks: ", boardTasks);
+  
   // contactsToAssigned = await getContacts();
   createAssignedTo();
 

@@ -139,7 +139,7 @@ async function addContact() {
 	const phone = getContactPhone();
 
 	const contact = {
-		// userId: null,
+		userId: null,
 		name: name,
 		email: email,
 		phone: phone,
@@ -340,10 +340,9 @@ function getnameFirstLetters(name) {
 async function deleteSingleContact(index, contactId) {
 	const content = document.getElementById('info-wrapper');
 	if(allContacts[index].userId){
-		await deleteUser(allContacts[index].userId);
+		await deleteUser(allContacts[index].id);
 	}
-	debugger
-	unassignFromTasks(allContacts[index].name);
+	unassignFromTasks(allContacts[index].id);
 	allContacts.splice(index, 1);
 	await deleteContact(contactId)
 	// await saveContacts(allContacts);
@@ -456,13 +455,13 @@ async function deleteUser(userId) {
  * @param {string} name - The name of the contact to be unassigned.
  * @returns {Promise<void>}
  */
-async function unassignFromTasks(name) {
+async function unassignFromTasks(id) {
 	let tasks = await getAllTasks();
 	tasks.forEach((task) => {
-		task.assignees = task.assignees.filter((assignee) => assignee !== name);
+		task.assigned_to = task.assigned_to.filter((assignee) => assignee.id !== id);
 	});
 
-	await saveTasks(tasks);
+	// await saveTasks(tasks);
 }
 
 /**
