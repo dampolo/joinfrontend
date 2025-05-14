@@ -616,7 +616,6 @@ async function saveEditTask() {
   saveEditTaskDueDate();
   
   boardTasks[currentIndex] = newTask;
-  debugger
   const taskForUpdate = {
     ...boardTasks[taskIndex],
     assigned_to: boardTasks[taskIndex].assigned_to.map(user => user.id),

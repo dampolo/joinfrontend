@@ -49,8 +49,8 @@ async function getAllContacts() {
   if (!res.ok) {
     throw new Error(`HTTP error! Status: ${res.status}`);
   }
-  const task = await res.json();
-  return task;
+  const contact = await res.json();
+  return contact;
 }
 
 async function getSingleContacts(userId) {

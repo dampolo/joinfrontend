@@ -149,7 +149,7 @@ async function addContact() {
 		// allContacts.push(contact);
 		await saveSingleContact(contact)
 		// await saveContacts(allContacts);
-		allContacts = await getContacts();
+		allContacts = await getAllContacts();
 		closeCreateContact();
 		deleteValues();
 	} catch (error) {
