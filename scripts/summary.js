@@ -90,8 +90,9 @@ function findNextUrgentTask() {
   let closestDueDate = Infinity;
 
   tasks.forEach((task) => {
-    if (task.priority === "urgent") {
-      const dueDate = new Date(task.date);
+    
+    if (task.priority === "URGENT") {
+      const dueDate = new Date(task.due_date);
       dueDate.setHours(0, 0, 0, 0);
 
       if (dueDate >= today && dueDate < closestDueDate) {
@@ -133,6 +134,6 @@ function showStats() {
   ).length;
 
   document.getElementById("tasks-upcoming-deadline").innerHTML = upcomingDeadline
-    ? upcomingDeadline.date
+    ? upcomingDeadline.due_date
     : "n/a";
 }

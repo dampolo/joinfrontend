@@ -65,9 +65,8 @@ async function doLogIn() {
  * @returns {Promise<void>}
  */
 async function logInAsGuest() {
-  debugger
   logInButton.disabled = true;
-  if (await logIn("Guest", "GastGast2025!", true)) {
+  if (await logIn("Guest", "GastGast2025!")) {
     showToast("You have been logged in successfully.");
     setTimeout(() => {
       window.location.href = "summary.html";
