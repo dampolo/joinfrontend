@@ -3,14 +3,10 @@ let currentIndex = null;
 let newTask = null;
 let editSubtasksList = [];
 
-async function openTaskDialog(id, index, taskId) {
-  console.log(id);
-  console.log(index);
-  
+async function openTaskDialog(id, index, taskId) {  
   currentDialog = document.getElementById(id);
   currentDialog.setAttribute("data-task-index", index);
   currentDialog.setAttribute("data-task-id", taskId);
-  console.log("taskId: ", taskId);
   
   currentIndex = index;
   newTask = { ...boardTasks[currentIndex] };

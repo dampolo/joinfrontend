@@ -77,14 +77,14 @@ function closeCreateContact() {
  * Shows the form to edit an existing contact.
  * @param {number} index - The index of the contact to be edited.
  */
-function showEditContact(index) {
+function showEditContact(index, contactId) {
 	const background = document.getElementById('edit-contact-bg');
 	const editForm = document.getElementById('edit-contact-form');
 	const contact = allContacts[index];
 	const bgColor = assignColor(contact.name);
 	const firstLetters = getnameFirstLetters(allContacts[index].name);
 
-	editForm.innerHTML = editFormTemplate(index, bgColor, firstLetters);
+	editForm.innerHTML = editFormTemplate(index, bgColor, firstLetters, contactId);
 
 	background.classList.remove('d-none');
 	editForm.classList.remove('d-none');
@@ -245,9 +245,7 @@ async function renderContacts(contacts) {
  * Renders the contact information.
  * @param {number} index - The index of the contact.
  */
-function renderInfo(index, contactId) {
-	console.log(index, contactId);
-	
+function renderInfo(index, contactId) {	
 	currentContactIndex = index;
 	const infoContainer = document.getElementById('info-wrapper');
 	const displayContainer = document.getElementById('contacts-display-wrapper');
@@ -359,7 +357,7 @@ async function deleteSingleContact(index, contactId) {
  * @param {number} index - The index of the contact to be updated.
  * @returns {Promise<void>}
  */
-async function updateContact(event, index) {
+async function updateContact(event, index, contactId) {
 	event.preventDefault();
 
 	const updatedName = document.getElementById('edit-contact-name').value;
@@ -370,11 +368,16 @@ async function updateContact(event, index) {
 		await updateUser(allContacts[index].userId, updatedName, updatedEmail, updatedPhone);
 	}
 
+	const contact = {
+		name: updatedName,
+		email: updatedEmail,
+		phone: updatedPhone,
+	};
+
 	allContacts[index].name = updatedName;
 	allContacts[index].email = updatedEmail;
 	allContacts[index].phone = updatedPhone;
-	await saveContacts(allContacts);
-
+	await updateSingleContact(contactId, contact)
 	renderContacts(allContacts);
 	renderInfo(currentContactIndex);
 	closeEditContact();
@@ -383,9 +386,7 @@ async function updateContact(event, index) {
 }
 
 
-function showDeleteConfirmation(index, contactId) {
-	console.log(index, contactId);
-	
+function showDeleteConfirmation(index) {	
 	let background = document.getElementById('delete-confirmation-bg');
 	let content = document.getElementById('delete-confirmation')
 

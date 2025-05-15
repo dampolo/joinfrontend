@@ -27,6 +27,19 @@ async function updateTask(taskId, payload) {
   });
 }
 
+async function updateSingleContact(contactId, payload) {
+  console.log("payload: ", payload);
+  
+  const url = `${fetchGetUserUrl}${contactId}/`;
+  return fetch(url, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify( payload ),
+  });
+}
+
 async function getAllTasks() {
   const url = `${fetchGetAllTasksUrl}`;
   const res = await fetch(url, {
