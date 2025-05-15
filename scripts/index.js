@@ -37,6 +37,7 @@ function animateBackdrop() {
  * @returns {Promise<void>}
  */
 async function doLogIn() {
+  debugger
   const email = document.getElementById("name");
   const password = document.getElementById("password");
   const logInButton = document.getElementById("logInButton");  
@@ -64,8 +65,9 @@ async function doLogIn() {
  * @returns {Promise<void>}
  */
 async function logInAsGuest() {
+  debugger
   logInButton.disabled = true;
-  if (await logIn(null, null, true)) {
+  if (await logIn("Guest", "GastGast2025!", true)) {
     showToast("You have been logged in successfully.");
     setTimeout(() => {
       window.location.href = "summary.html";

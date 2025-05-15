@@ -9,9 +9,6 @@ async function signUp() {
   const email = document.getElementById("email").value;
   const telephone = document.getElementById("telephone").value
   const password = document.getElementById("password").value;
-  let userId = 1;
-
-  debugger
 
   const userData = {
     username: userName,

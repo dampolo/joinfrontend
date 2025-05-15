@@ -34,14 +34,8 @@ function removeUserFromLocalStorage() {
  * @param {boolean} [guest=false] - Indicates whether to use a Guest Account (optional, default is false).
  * @returns {Promise<boolean>} A Promise that resolves to a boolean indicating whether the login was successful.
  */
-async function logIn(username, password, guest = false) {  
+async function logIn(username, password) {  
   if (isLoggedIn()) logOut();
-  
-  if (guest) {
-    const guestUser = { userId: 0, name: "Guest", email: null, password: null };
-    saveUserToLocalStorage(guestUser);
-    return true;
-  }
   
   const result = await getUser(username, password);
 
