@@ -189,8 +189,8 @@ async function saveSingleContact(newContact) {
       throw new Error(`HTTP error! Status: ${res.status}`);
     }
 
-    const task = await res.json();
-    return task
+    const contact = await res.json();
+    return contact
   } catch (error) {
     console.error("Error fetching data:", error);
     return { status: "error", message: error.message };
