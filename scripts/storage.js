@@ -14,9 +14,7 @@ const fetchGetAllTasksUrl = "http://127.0.0.1:8000/api/tasks/";
 const fetchLogin = "http://127.0.0.1:8000/auth/login/";
 const fetchRegistration = "http://127.0.0.1:8000/auth/registration/";
 
-async function updateTask(taskId, payload) {
-  console.log("payload: ", payload);
-  
+async function updateTask(taskId, payload) {  
   const url = `${fetchGetAllTasksUrl}${taskId}/`;
   return fetch(url, {
     method: "PATCH",
@@ -27,9 +25,7 @@ async function updateTask(taskId, payload) {
   });
 }
 
-async function updateSingleContact(contactId, payload) {
-  console.log("payload: ", payload);
-  
+async function updateSingleContact(contactId, payload) {  
   const url = `${fetchGetUserUrl}${contactId}/`;
   return fetch(url, {
     method: "PATCH",
