@@ -1,4 +1,5 @@
-async function updateTask(taskId, payload) {  
+async function updateTask(taskId, payload) {
+  debugger
   const url = `${API_URL}/api/tasks/${taskId}/`;
   return fetch(url, {
     method: "PATCH",

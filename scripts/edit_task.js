@@ -274,16 +274,17 @@ function editTaskRenderAssignedTo(assignedToTask) {
 }
 
 function editTaskAssignedTo() {
-  const checkBoxes = document.querySelectorAll(".add-task-checkbox-edit");
+  const checkBoxes = document.querySelectorAll(".add-task-checkbox-edit");  
   newTask.assigned_to = [];
   assignedToId = [];
+  console.log(checkBoxes);
+  
 
   for (let i = 0; i < checkBoxes.length; i++) {    
     if (checkBoxes[i].checked) {
       const contact = checkBoxes[i].value;      
-      const id = checkBoxes[i].id;      
-   
-      
+      const id = checkBoxes[i].dataset.userId;      //dataset Because we need other name for ID to work with checkbox
+
       newTask.assigned_to.push({
         id: id,
         name: contact

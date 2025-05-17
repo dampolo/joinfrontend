@@ -8,11 +8,11 @@ function editTaskRenderAssignedToHtml(id, bgColor, contact, assigned) {
   // debugger
   return /*html*/ `
   <li>
-    <label for="${id}">
+    <label for="person${id}">
       <span class="avatar" style="background-color: ${bgColor};">${getUserInitials(contact)}</span>
       <span>${contact}</span>
     </label>
-      <input class="add-task-checkbox-edit" type="checkbox" name="${id}" id="${id}" value="${contact}" ${ assigned ? "checked" : "" } onclick="editTaskAssignedTo()">
+      <input class="add-task-checkbox-edit" type="checkbox" name="${id}" id="person${id}" data-user-id="${id}" value="${contact}" ${ assigned ? "checked" : "" } onclick="editTaskAssignedTo()">
   </li>
   `;
 }
