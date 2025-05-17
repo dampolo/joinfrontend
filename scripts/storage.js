@@ -73,50 +73,27 @@ async function getSingleContacts(userId) {
 }
 
 
-async function getUser(username, password) {
-  const url = `${fetchLogin}`;
-  try {
-    const res = await fetch(url, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ username, password }),
-    });
-    if (!res.ok) {
-      throw new Error(`HTTP error! Status: ${res.status}`);
-    }
+// async function saveUsers(userData) {
+//   const url = `${fetchRegistration}`;
+//   try {
+//     const res = await fetch(url, {
+//       method: "POST",
+//       headers: {
+//         "Content-Type": "application/json",
+//       },
+//       body: JSON.stringify(userData),
+//     });
+//     if (!res.ok) {
+//       throw new Error(`HTTP error! Status: ${res.status}`);
+//     }
 
-    const user = await res.json();
-    return { status: "success", user };
-  } catch (error) {
-    console.error("Error fetching data:", error);
-    return { status: "error", message: error.message };
-  }
-}
-
-
-async function saveUsers(userData) {
-  const url = `${fetchRegistration}`;
-  try {
-    const res = await fetch(url, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(userData),
-    });
-    if (!res.ok) {
-      throw new Error(`HTTP error! Status: ${res.status}`);
-    }
-
-    const user = await res.json();
-    return user
-  } catch (error) {
-    console.error("Error fetching data:", error);
-    return { status: "error", message: error.message };
-  }
-}
+//     const user = await res.json();
+//     return user
+//   } catch (error) {
+//     console.error("Error fetching data:", error);
+//     return { status: "error", message: error.message };
+//   }
+// }
 
 async function saveTask(newTask) {
   const url = `${fetchGetAllTasksUrl}`;
