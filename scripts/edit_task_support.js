@@ -4,15 +4,15 @@ function editTaskMinimumDate() {
   }
 
 
-function editTaskRenderAssignedToHtml(contactId, bgColor, contact, assigned) {
+function editTaskRenderAssignedToHtml(id, bgColor, contact, assigned) {
   // debugger
   return /*html*/ `
   <li>
-    <label for="${contactId}">
+    <label for="${id}">
       <span class="avatar" style="background-color: ${bgColor};">${getUserInitials(contact)}</span>
       <span>${contact}</span>
     </label>
-      <input class="add-task-checkbox-edit" type="checkbox" name="${contactId}" id="${contactId}" value="${contact}" ${ assigned ? "checked" : "" } onclick="editTaskAssignedTo()">
+      <input class="add-task-checkbox-edit" type="checkbox" name="${id}" id="${id}" value="${contact}" ${ assigned ? "checked" : "" } onclick="editTaskAssignedTo()">
   </li>
   `;
 }

@@ -223,11 +223,11 @@ contactsToAssigned.sort(compareByName);
 function createAssignedTo() {
   for (let i = 0; i < contactsToAssigned.length; i++) {    
     const contact = contactsToAssigned[i].name;
-    const contactId = contactsToAssigned[i].id;
+    const id = contactsToAssigned[i].id;
     const createContactsContainer = document.getElementById("add-task-contact");
     const bgColor = assignColor(contact);
 
-    createContactsContainer.innerHTML += addTaskAssignedToHtml(contactId, bgColor, contact);
+    createContactsContainer.innerHTML += addTaskAssignedToHtml(id, bgColor, contact);
   }
 }
 

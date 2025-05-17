@@ -18,8 +18,8 @@ async function getSingleContacts(userId) {
   return user;
 }
 
-async function updateSingleContact(userId, payload) {  
-  const url = `${API_URL}/api/users/${userId}/`;
+async function updateSingleContact(id, payload) {  
+  const url = `${API_URL}/api/users/${id}/`;
   return fetch(url, {
     method: "PATCH",
     headers: {
@@ -51,8 +51,8 @@ async function saveSingleContact(newContact) {
   }
 }
 
-async function deleteContact(contactId) {
-  const url = `${API_URL}/api/users/${contactId}/`;
+async function deleteContact(id) {
+  const url = `${API_URL}/api/users/${id}/`;
   try {
     const res = await fetch(url, {
       method: "DELETE",

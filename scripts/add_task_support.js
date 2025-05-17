@@ -261,17 +261,17 @@ function addTaskShowAvatarsHtml(bgColor, contact) {
   `;
 }
 
-function addTaskAssignedToHtml(contactId, bgColor, contact) {
+function addTaskAssignedToHtml(id, bgColor, contact) {
 
   return /*html*/ `
     <li>
-      <label for="${contactId}">
+      <label for="${id}">
         <span class="avatar" style="background-color: ${bgColor};">${getUserInitials(
     contact
   )}</span>
         <span>${contact}</span>
       </label>
-      <input class="add-task-checkbox" type="checkbox" name="${contactId}" id="${contactId}" value="${contact}" onclick="addTaskAssignedTo()">
+      <input class="add-task-checkbox" type="checkbox" name="${id}" id="${id}" value="${contact}" onclick="addTaskAssignedTo()">
     </li>
   `;
 }

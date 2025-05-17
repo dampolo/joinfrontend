@@ -259,13 +259,13 @@ function editTaskRenderAssignedTo(assignedToTask) {
   for (let i = 0; i < contactsToAssigned.length; i++) {
     
     const contact = contactsToAssigned[i].name;
-    const contactId = contactsToAssigned[i].id;
+    const id = contactsToAssigned[i].id;
     const bgColor = assignColor(contact);
 
-    const isAssigned = assignedToTask.some(obj => obj.id === contactId);    
+    const isAssigned = assignedToTask.some(obj => obj.id === id);    
     
     createContactsContainer.innerHTML += editTaskRenderAssignedToHtml(
-      contactId,
+      id,
       bgColor,
       contact,
       isAssigned
@@ -281,14 +281,14 @@ function editTaskAssignedTo() {
   for (let i = 0; i < checkBoxes.length; i++) {    
     if (checkBoxes[i].checked) {
       const contact = checkBoxes[i].value;      
-      const contactId = checkBoxes[i].id;      
+      const id = checkBoxes[i].id;      
    
       
       newTask.assigned_to.push({
-        id: contactId,
+        id: id,
         name: contact
       });
-      assignedToId.push(contactId);    
+      assignedToId.push(id);    
     }
   }  
   

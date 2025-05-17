@@ -77,14 +77,14 @@ function closeCreateContact() {
  * Shows the form to edit an existing contact.
  * @param {number} index - The index of the contact to be edited.
  */
-function showEditContact(index, contactId) {
+function showEditContact(index, id) {
 	const background = document.getElementById('edit-contact-bg');
 	const editForm = document.getElementById('edit-contact-form');
 	const contact = allContacts[index];
 	const bgColor = assignColor(contact.name);
 	const firstLetters = getnameFirstLetters(allContacts[index].name);
 
-	editForm.innerHTML = editFormTemplate(index, bgColor, firstLetters, contactId);
+	editForm.innerHTML = editFormTemplate(index, bgColor, firstLetters, id);
 
 	background.classList.remove('d-none');
 	editForm.classList.remove('d-none');
@@ -223,7 +223,7 @@ async function renderContacts(contacts) {
 
 	for (let i = 0; i < contacts.length; i++) {                              
 		const contact = contacts[i];
-		const contactId = contacts[i].id
+		const id = contacts[i].id
 		const firstLetter = contact.name[0].toUpperCase();
 
 		if (!usedLetters.has(firstLetter)) {
@@ -237,7 +237,7 @@ async function renderContacts(contacts) {
 
 		bgColor = assignColor(contact.name);
 		let nameFirstLetters = getnameFirstLetters(contact.name);
-		contactListContainer.innerHTML += contactTemplate(contact, i, bgColor, nameFirstLetters, contactId);
+		contactListContainer.innerHTML += contactTemplate(contact, i, bgColor, nameFirstLetters, id);
 	}
 }
 
@@ -245,7 +245,7 @@ async function renderContacts(contacts) {
  * Renders the contact information.
  * @param {number} index - The index of the contact.
  */
-function renderInfo(index, contactId) {	
+function renderInfo(index, id) {	
 	currentContactIndex = index;
 	const infoContainer = document.getElementById('info-wrapper');
 	const displayContainer = document.getElementById('contacts-display-wrapper');
@@ -255,7 +255,7 @@ function renderInfo(index, contactId) {
 	const firstLetters = getnameFirstLetters(allContacts[index].name);
 
 	infoContainer.innerHTML = '';
-	infoContainer.innerHTML = contactInfoTemplate(index, bgColor, firstLetters, contactId);
+	infoContainer.innerHTML = contactInfoTemplate(index, bgColor, firstLetters, id);
 	infoContainer.classList.remove('d-none');
 	infoContainer.classList.add('slide-from-right');
 
@@ -335,14 +335,14 @@ function getnameFirstLetters(name) {
  * @param {number} index - The index of the contact to be deleted.
  * @returns {Promise<void>}
  */
-async function deleteSingleContact(index, contactId) {
+async function deleteSingleContact(index, id) {
 	const content = document.getElementById('info-wrapper');
 	if(allContacts[index].userId){
 		await deleteUser(allContacts[index].id);
 	}
 	unassignFromTasks(allContacts[index].id);
 	allContacts.splice(index, 1);
-	await deleteContact(contactId)
+	await deleteContact(id)
 	// await saveContacts(allContacts);
 	content.innerHTML = '';
 	renderContacts(allContacts);	
@@ -357,7 +357,8 @@ async function deleteSingleContact(index, contactId) {
  * @param {number} index - The index of the contact to be updated.
  * @returns {Promise<void>}
  */
-async function updateContact(event, index, contactId) {
+async function updateContact(event, index, id) {
+	debugger
 	event.preventDefault();
 
 	const updatedName = document.getElementById('edit-contact-name').value;
@@ -377,7 +378,7 @@ async function updateContact(event, index, contactId) {
 	allContacts[index].name = updatedName;
 	allContacts[index].email = updatedEmail;
 	allContacts[index].phone = updatedPhone;
-	await updateSingleContact(contactId, contact)
+	await updateSingleContact(id, contact)
 	renderContacts(allContacts);
 	renderInfo(currentContactIndex);
 	closeEditContact();
@@ -386,8 +387,7 @@ async function updateContact(event, index, contactId) {
 }
 
 
-function showDeleteConfirmation(index, contactId) {	
-	debugger
+function showDeleteConfirmation(index, id) {	
 	let background = document.getElementById('delete-confirmation-bg');
 	let content = document.getElementById('delete-confirmation')
 
@@ -405,7 +405,7 @@ function showDeleteConfirmation(index, contactId) {
 	}, 300);
 
 	content.innerHTML = '';
-	content.innerHTML += deleteConfirmationTemplate(index, contactId);
+	content.innerHTML += deleteConfirmationTemplate(index, id);
 
 }
 
