@@ -65,12 +65,12 @@ async function doLogIn() {
  */
 async function logInAsGuest() {
   logInButton.disabled = true;
-  // if (await logIn("Guest", "GastGast2025!")) {
-  //   showToast("You have been logged in successfully.");
-  //   setTimeout(() => {
-  //     window.location.href = "summary.html";
-  //   }, 2500);
-  // }
+  if (await logIn("Guest", "GastGast2025!")) {
+    showToast("You have been logged in successfully.");
+    setTimeout(() => {
+      window.location.href = "summary.html";
+    }, 2500);
+  }
 
   logInButton.disabled = false;
 }
