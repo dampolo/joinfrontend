@@ -1,6 +1,6 @@
 let allTasks = [];
 
-let globalPrio = "medium";
+let globalPrio = "MEDIUM";
 let globalCategory = "";
 let globalSubtasks = [];
 let subtasksList = [];
@@ -155,20 +155,15 @@ function addTaskSubtasks(event) {
 async function addTaskCreateTask() {
   let tasks = await getAllTasks();
 
-  const title = addTaskTitle();
-  const description = addTaskDescription();
-  const names = addTaskAssignedTo();
-  const date = addTaskDueDate();
-
   const newTask = {
-    board: globalBoardCategory,
-    title: title,
-    description: description,
-    assigned_to: names,
-    due_date: date,
-    priority: globalPrio,
-    category: globalCategory === "" ? addTaskChooseCategoryManually() : globalCategory,
-    subtasks: [],
+      board: globalBoardCategory,
+      title: addTaskTitle(),
+      description: addTaskDescription(),
+      assigned_to: addTaskAssignedTo(),
+      due_date: addTaskDueDate(),
+      priority: globalPrio,
+      category: globalCategory === "" ? addTaskChooseCategoryManually() : globalCategory,
+      subtasks: [],
   };
 
   console.log(newTask);
