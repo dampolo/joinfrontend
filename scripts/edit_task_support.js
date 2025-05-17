@@ -19,7 +19,7 @@ function editTaskRenderAssignedToHtml(id, bgColor, contact, assigned) {
   
 
 function renderTaskAssigneeHtml(assignee, bgColor) {
-  return `
+  return /*html*/`
     <div class="assignee">
       <div class="avatar" style="background-color: ${bgColor}">
         ${getUserInitials(assignee.name)}
@@ -30,7 +30,7 @@ function renderTaskAssigneeHtml(assignee, bgColor) {
 }
 
 function renderTaskSubtaskHtml(index, subtask) {
-  return `
+  return /*html*/`
     <div class="checkbox-wrapper">
       <label class="checkbox" for="subtask-${index}">
         <input id="subtask-${index}" type="checkbox"

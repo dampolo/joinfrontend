@@ -283,9 +283,7 @@ function addTaskAssignedToSearchHTML(i, bgColor, contact, assigned) {
       <span class="avatar" style="background-color: ${bgColor};">${getUserInitials(contact)}</span>
       <span>${contact}</span>
     </label>
-    <input class="add-task-checkbox" type="checkbox" name="person[${i}]" id="person${i}" value="${contact}" ${
-    assigned ? "checked" : ""
-  } onclick="addTaskAssignedTo()">
+    <input class="add-task-checkbox" type="checkbox" name="person[${i}]" id="person${i}" value="${contact}" ${assigned ? "checked" : ""} onclick="addTaskAssignedTo()">
   </li>
 `;
 }
