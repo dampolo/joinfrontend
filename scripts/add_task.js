@@ -178,7 +178,7 @@ async function addTaskCreateTask() {
   console.log(newTask);
   
   await saveTask(newTask);
-  // addTaskClearFormularReset();
+  addTaskClearFormularReset();
   addTaskCreateTaskConfirmation();
 }
 

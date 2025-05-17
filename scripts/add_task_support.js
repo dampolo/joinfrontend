@@ -250,9 +250,9 @@ function addTaskClearFormular(event) {
  */
 function addTaskCreateTaskConfirmation() {
   showToast(`<img src="./assets/icons/board.svg"/> Task added to board`);
-  // setTimeout(() => {
-  //   window.location.href = "board.html";
-  // }, 2000);
+  setTimeout(() => {
+    window.location.href = "board.html";
+  }, 2000);
 }
 
 function addTaskShowAvatarsHtml(bgColor, contact) {    

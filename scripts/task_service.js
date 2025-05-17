@@ -10,7 +10,7 @@ async function updateTask(taskId, payload) {
 }
 
 async function saveTask(newTask) {
-  const url = `${fetchGetAllTasksUrl}`;
+  const url = `${API_URL}/api/tasks/`;
   try {
     const res = await fetch(url, {
       method: "POST",

@@ -386,7 +386,8 @@ async function updateContact(event, index, contactId) {
 }
 
 
-function showDeleteConfirmation(index) {	
+function showDeleteConfirmation(index, contactId) {	
+	debugger
 	let background = document.getElementById('delete-confirmation-bg');
 	let content = document.getElementById('delete-confirmation')
 
