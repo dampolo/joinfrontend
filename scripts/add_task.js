@@ -109,15 +109,17 @@ function addTaskPrio(prio, container, event) {
  * @param {string} category - The ID of the element containing the selected category text.
  */
 function addTaskChooseCategory(category) {
-    const selectedElement = category
+  let displayCategory = "";
+
   if (category === "TECHNICAL_TASK") {
-    const category = "Technical Task"
-    document.getElementById("add-task-category").value = category;
+    displayCategory = "Technical Task";
   } else {
-    const category = "User Story"
-    document.getElementById("add-task-category").value = category;
+    displayCategory = "User Story";
   }
-  globalCategory = selectedElement;  
+
+  document.getElementById("add-task-category").value = displayCategory;
+  
+  globalCategory = category;
 }
 
 function addTaskChooseCategoryManually() {
@@ -156,14 +158,14 @@ async function addTaskCreateTask() {
   let tasks = await getAllTasks();
 
   const newTask = {
-      board: globalBoardCategory,
-      title: addTaskTitle(),
-      description: addTaskDescription(),
-      assigned_to: addTaskAssignedTo(),
-      due_date: addTaskDueDate(),
-      priority: globalPrio,
-      category: globalCategory === "" ? addTaskChooseCategoryManually() : globalCategory,
-      subtasks: [],
+    board: globalBoardCategory,
+    title: addTaskTitle(),
+    description: addTaskDescription(),
+    assigned_to: addTaskAssignedTo(),
+    due_date: addTaskDueDate(),
+    priority: globalPrio,
+    category: globalCategory === "" ? addTaskChooseCategoryManually() : globalCategory,
+    subtasks: [],
   };
 
   console.log(newTask);
