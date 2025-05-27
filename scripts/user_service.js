@@ -9,13 +9,13 @@ async function getUser(username, password) {
       body: JSON.stringify({ username, password }),
     });
     if (!res.ok) {
-      throw new Error(`HTTP error! Status: ${res.status}`);
+      const errorData = await res.json();
+      return { status: "error", message: errorData.message[0] };
     }
 
     const user = await res.json();
     return { status: "success", user };
   } catch (error) {
-    console.error("Error fetching data:", error);
     return { status: "error", message: error.message };
   }
 }
@@ -48,7 +48,7 @@ async function saveUsers(userData) {
  * @param {Object} user - The user object to be saved.
  */
 function saveUserToLocalStorage(user) {
-  console.log(user);
+  // console.log(user);
   
   localStorage.setItem("token", JSON.stringify(user));
 }
@@ -71,12 +71,12 @@ async function logIn(username, password) {
   if (isLoggedIn()) logOut();
   
   const result = await getUser(username, password);
-
-  if (result.status) {
+  
+  if (result.status === "success") {
     saveUserToLocalStorage(result.user);
     return true;
-  }
-  return false;
+  } else
+    return result.message
 }
 
 /**

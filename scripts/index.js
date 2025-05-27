@@ -39,11 +39,13 @@ function animateBackdrop() {
 async function doLogIn() {
   const email = document.getElementById("name");
   const password = document.getElementById("password");
-  const logInButton = document.getElementById("logInButton");  
+  const logInButton = document.getElementById("logInButton");
+  const errorMessage = document.querySelector(".error-message")
 
   logInButton.disabled = true;
-
-  if (await logIn(email.value, password.value)) {
+  const result = await logIn(email.value, password.value);
+  debugger
+  if (result) {
     password.parentElement.classList.remove("has-error");
     showToast("You have been logged in successfully.");
     setTimeout(() => {
@@ -51,6 +53,7 @@ async function doLogIn() {
     }, 2500);
   } else {
     password.parentElement.classList.add("has-error");
+    errorMessage.innerText = result
   }
 
   logInButton.disabled = false;
