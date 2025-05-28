@@ -9,12 +9,14 @@ async function getUser(username, password) {
       body: JSON.stringify({ username, password }),
     });
     if (!res.ok) {
+      
       const errorData = await res.json();
       return { status: "error", message: errorData.message[0] };
     }
 
     const user = await res.json();
     return { status: "success", user };
+    
   } catch (error) {
     return { status: "error", message: error.message };
   }
@@ -31,7 +33,10 @@ async function saveUsers(userData) {
       body: JSON.stringify(userData),
     });
     if (!res.ok) {
-      throw new Error(`HTTP error! Status: ${res.status}`);
+      const errorData = await res.json();
+      console.log(errorData);
+      
+      return { status: "error", message: errorData };
     }
 
     const user = await res.json();
@@ -71,12 +76,12 @@ async function logIn(username, password) {
   if (isLoggedIn()) logOut();
   
   const result = await getUser(username, password);
-  
+  debugger
   if (result.status === "success") {
     saveUserToLocalStorage(result.user);
-    return true;
+    return result;
   } else
-    return result.message
+    return result
 }
 
 /**

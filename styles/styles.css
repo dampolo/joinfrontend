@@ -179,6 +179,7 @@ input:focus {
   position: relative;
   display: flex;
   align-items: center;
+  flex-direction: column;
 }
 
 .input-wrapper input {
@@ -196,9 +197,12 @@ input:focus {
 }
 
 .input-wrapper.has-error input {
-  border-color: var(--error);
+  background-color: var(--error);
 }
 
+.has-error {
+  color: var(--error);
+}
 .input-wrapper.has-error + .error-message {
   opacity: 100%;
 }
@@ -206,7 +210,7 @@ input:focus {
 .input-wrapper .input-icon {
   position: absolute;
   right: 0;
-  padding: 0 16px;
+  padding: 14px 16px;
 
   display: inline-flex;
   justify-content: center;

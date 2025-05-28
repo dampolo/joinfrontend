@@ -30,12 +30,40 @@ async function signUp() {
   // users.push({ userId, name, email, password });
   // contacts.push({ userId, name, email, phone: "" });
 
-  if ( await saveUsers(userData)) {
+    const result = await saveUsers(userData)
+    debugger
+  if (result.status !== "error") {
     showToast("You signed up successfully.");
-    setTimeout(() => {
-      window.location.href = "index.html?registered=true";
-    }, 2500);
+    // setTimeout(() => {
+    //   window.location.href = "index.html?registered=true";
+    // }, 2500);
+  } else {
+    showError(result)
   }
+}
+
+function showError(result) {
+  if(result.message.username) {
+    document.querySelector(".username-error").innerText = result.message.username
+  }
+  if(result.message.firstName){
+    document.querySelector(".first-name-error").innerText = result.message.first_name
+  }
+
+  if(result.message.last_name) {
+    document.querySelector(".last-name-error").innerText = result.message.last_name
+  }
+  if(result.message.email) {
+    document.querySelector(".email-error").innerText = result.message.email
+  }
+  if(result.message.phone) {
+    document.querySelector(".telephone-error").innerText = result.message.phone
+  }
+  if(result.message.password) {
+    document.querySelector(".password-error").innerText = result.message.password
+
+  }
+
 }
 
 /**
