@@ -44,7 +44,6 @@ async function doLogIn() {
 
   logInButton.disabled = true;
   const result = await logIn(email.value, password.value);
-  debugger
   if (result.status === "success") {
     password.parentElement.classList.remove("has-error");
     showToast("You have been logged in successfully.");

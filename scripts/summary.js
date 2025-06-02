@@ -8,9 +8,7 @@ async function initSummary() {
   authGuard();
   await init();
   setNavActive("summary");
-  tasks = await getAllTasks();
-  console.log(tasks);
-  
+  tasks = await getAllTasks();  
   greet();
   showStats();
 

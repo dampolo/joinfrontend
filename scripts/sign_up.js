@@ -19,24 +19,13 @@ async function signUp() {
     password: password,
     repeated_password: password
   };
-  
-  // let users = await getUsers();
-  // let contacts = await getContacts();
-
-  // if (users.length > 0) {
-  //   userId = users.slice(-1)[0].userId + 1;
-  // }
-
-  // users.push({ userId, name, email, password });
-  // contacts.push({ userId, name, email, phone: "" });
 
     const result = await saveUsers(userData)
-    debugger
   if (result.status !== "error") {
     showToast("You signed up successfully.");
-    // setTimeout(() => {
-    //   window.location.href = "index.html?registered=true";
-    // }, 2500);
+    setTimeout(() => {
+      window.location.href = "index.html?registered=true";
+    }, 2500);
   } else {
     showError(result)
   }

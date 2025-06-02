@@ -76,7 +76,6 @@ async function logIn(username, password) {
   if (isLoggedIn()) logOut();
   
   const result = await getUser(username, password);
-  debugger
   if (result.status === "success") {
     saveUserToLocalStorage(result.user);
     return result;
