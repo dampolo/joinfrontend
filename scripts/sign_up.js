@@ -32,10 +32,16 @@ async function signUp() {
 }
 
 function showError(result) {
+  document.querySelector(".username-error").innerText = "";
+  document.querySelector(".first-name-error").innerText = "";
+  document.querySelector(".last-name-error").innerText = "";
+  document.querySelector(".telephone-error").innerText = "";
+  document.querySelector(".password-error").innerText = "";
+
   if(result.message.username) {
     document.querySelector(".username-error").innerText = result.message.username
   }
-  if(result.message.firstName){
+  if(result.message.first_name){
     document.querySelector(".first-name-error").innerText = result.message.first_name
   }
 
