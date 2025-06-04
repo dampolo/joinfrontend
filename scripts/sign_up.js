@@ -53,7 +53,6 @@ function showError(result) {
   }
   if(result.message.phone) {
     document.querySelector(".telephone-error").innerText = result.message.phone
-    document.querySelector(".contact-phone-error").innerText = result.message.phone
 
   }
   if(result.message.password) {
