@@ -16,61 +16,62 @@ let currentContactIndex = null;
  * @returns {Promise<void>}
  */
 async function contactInit() {
-	authGuard();
-	await init();
-	setNavActive('contacts');
+  authGuard();
+  await init();
+  setNavActive("contacts");
 
-	allContacts = await getAllContacts();
+  allContacts = await getAllContacts();
 
-	renderContacts(allContacts);
+  renderContacts(allContacts);
 }
 
 /**
  * Shows the form to create a new contact.
  */
 function showCreateContact() {
-	let background = document.getElementById('new-contact-bg');
-	let formContent = document.getElementById('new-contact-form');
+  let background = document.getElementById("new-contact-bg");
+  let formContent = document.getElementById("new-contact-form");
 
-	background.classList.remove('d-none');
-	formContent.classList.remove('d-none');
-	background.classList.add('fade-in');
+  background.classList.remove("d-none");
+  formContent.classList.remove("d-none");
+  background.classList.add("fade-in");
 
-	if (innerWidth >= 790) {
-		formContent.classList.add('slide-from-right');
-	} else {
-		formContent.classList.add('slide-from-bottom');
-	}
+  if (innerWidth >= 790) {
+    formContent.classList.add("slide-from-right");
+  } else {
+    formContent.classList.add("slide-from-bottom");
+  }
 
-	setTimeout(() => {
-		background.classList.remove('fade-in');
-		formContent.classList.remove('slide-from-right');
-		formContent.classList.remove('slide-from-bottom');
-	}, 400);
+  setTimeout(() => {
+    background.classList.remove("fade-in");
+    formContent.classList.remove("slide-from-right");
+    formContent.classList.remove("slide-from-bottom");
+  }, 400);
 }
 
 /**
  * Closes the form to create a new contact.
  */
 function closeCreateContact() {
-	let background = document.getElementById('new-contact-bg');
-	let formContent = document.getElementById('new-contact-form');
+  let background = document.getElementById("new-contact-bg");
+  let formContent = document.getElementById("new-contact-form");
 
-	background.classList.add('fade-out');
+  background.classList.add("fade-out");
 
-	if (innerWidth >= 790) {
-		formContent.classList.add('slide-to-right');
-	} else {
-		formContent.classList.add('slide-to-bottom');
-	}
+  if (innerWidth >= 790) {
+    formContent.classList.add("slide-to-right");
+  } else {
+    formContent.classList.add("slide-to-bottom");
+  }
 
-	setTimeout(() => {
-		background.classList.add('d-none');
-		formContent.classList.add('d-none');
-		background.classList.remove('fade-out');
-		formContent.classList.remove('slide-to-right');
-		formContent.classList.remove('slide-to-bottom');
-	}, 200);
+  setTimeout(() => {
+    background.classList.add("d-none");
+    formContent.classList.add("d-none");
+    background.classList.remove("fade-out");
+    formContent.classList.remove("slide-to-right");
+    formContent.classList.remove("slide-to-bottom");
+  }, 200);
+  deleteValues()
 }
 
 /**
@@ -78,55 +79,55 @@ function closeCreateContact() {
  * @param {number} index - The index of the contact to be edited.
  */
 function showEditContact(index, id) {
-	const background = document.getElementById('edit-contact-bg');
-	const editForm = document.getElementById('edit-contact-form');
-	const contact = allContacts[index];
-	const bgColor = assignColor(contact.name);
-	const firstLetters = getnameFirstLetters(allContacts[index].name);
+  const background = document.getElementById("edit-contact-bg");
+  const editForm = document.getElementById("edit-contact-form");
+  const contact = allContacts[index];
+  const bgColor = assignColor(contact.name);
+  const firstLetters = getnameFirstLetters(allContacts[index].name);
 
-	editForm.innerHTML = editFormTemplate(index, bgColor, firstLetters, id);
+  editForm.innerHTML = editFormTemplate(index, bgColor, firstLetters, id);
 
-	background.classList.remove('d-none');
-	editForm.classList.remove('d-none');
-	background.classList.add('fade-in');
+  background.classList.remove("d-none");
+  editForm.classList.remove("d-none");
+  background.classList.add("fade-in");
 
-	if (innerWidth >= 790) {
-		editForm.classList.add('slide-from-right');
-	} else {
-		editForm.classList.add('slide-from-bottom');
-	}
+  if (innerWidth >= 790) {
+    editForm.classList.add("slide-from-right");
+  } else {
+    editForm.classList.add("slide-from-bottom");
+  }
 
-	setTimeout(() => {
-		background.classList.remove('fade-in');
-		editForm.classList.remove('slide-from-right');
-		editForm.classList.remove('slide-from-bottom');
-	}, 400);
+  setTimeout(() => {
+    background.classList.remove("fade-in");
+    editForm.classList.remove("slide-from-right");
+    editForm.classList.remove("slide-from-bottom");
+  }, 400);
 }
 
 /**
  * Closes the form to edit a contact.
  */
 function closeEditContact() {
-	const background = document.getElementById('edit-contact-bg');
-	const editForm = document.getElementById('edit-contact-form');
+  const background = document.getElementById("edit-contact-bg");
+  const editForm = document.getElementById("edit-contact-form");
 
-	background.classList.add('fade-out');
+  background.classList.add("fade-out");
 
-	if (innerWidth >= 790) {
-		editForm.classList.add('slide-to-right');
-	} else {
-		editForm.classList.add('slide-to-bottom');
-	}
+  if (innerWidth >= 790) {
+    editForm.classList.add("slide-to-right");
+  } else {
+    editForm.classList.add("slide-to-bottom");
+  }
 
-	setTimeout(() => {
-		background.classList.add('d-none');
-		editForm.classList.add('d-none');
-		background.classList.remove('fade-out');
-		editForm.classList.remove('slide-to-right');
-		editForm.classList.remove('slide-to-bottom');
-	}, 200);
+  setTimeout(() => {
+    background.classList.add("d-none");
+    editForm.classList.add("d-none");
+    background.classList.remove("fade-out");
+    editForm.classList.remove("slide-to-right");
+    editForm.classList.remove("slide-to-bottom");
+  }, 200);
 
-	closeDeleteConfirmation();
+  closeDeleteConfirmation();
 }
 
 /**
@@ -134,30 +135,31 @@ function closeEditContact() {
  * @returns {Promise<void>}
  */
 async function addContact() {
-	const name = getContactName();
-	const email = getContactEmail();
-	const phone = getContactPhone();
+  const name = getContactName();
+  const email = getContactEmail();
+  const phone = getContactPhone();
 
-	const contact = {
-		userId: null,
-		name: name,
-		email: email,
-		phone: phone,
-	};
+  const contact = {
+    userId: null,
+    name: name,
+    email: email,
+    phone: phone,
+  };
 
-	try {
-		// allContacts.push(contact);
-		await saveSingleContact(contact)
-		// await saveContacts(allContacts);
-		allContacts = await getAllContacts();
-		closeCreateContact();
-		deleteValues();
-	} catch (error) {
-		console.error('Failed to add contact', error);
-	}
+  const result = await saveSingleContact(contact);
 
-	renderContacts(allContacts);
-	showToast('Contact succesfully created');
+  if (result.status === "error") {
+    console.log("result: ", result);
+	debugger
+	showErrorContact(result)
+  } else {
+    closeCreateContact();
+    showToast("Contact succesfully created");
+    allContacts = await getAllContacts();
+    deleteValues();
+  }
+
+  renderContacts(allContacts);
 }
 
 /**
@@ -165,8 +167,8 @@ async function addContact() {
  * @returns {string} - The name of the contact.
  */
 function getContactName() {
-	const name = document.getElementById('contact-name');
-	return name.value;
+  const name = document.getElementById("contact-name");
+  return name.value;
 }
 
 /**
@@ -174,8 +176,8 @@ function getContactName() {
  * @returns {string} - The email of the contact.
  */
 function getContactEmail() {
-	const email = document.getElementById('contact-email');
-	return email.value;
+  const email = document.getElementById("contact-email");
+  return email.value;
 }
 
 /**
@@ -183,17 +185,17 @@ function getContactEmail() {
  * @returns {string} - The phone number of the contact.
  */
 function getContactPhone() {
-	const phone = document.getElementById('contact-phone');
-	return phone.value;
+  const phone = document.getElementById("contact-phone");
+  return phone.value;
 }
 
 /**
  * Deletes the input field values after adding a contact.
  */
 function deleteValues() {
-	document.getElementById('contact-name').value = '';
-	document.getElementById('contact-email').value = '';
-	document.getElementById('contact-phone').value = '';
+  document.getElementById("contact-name").value = "";
+  document.getElementById("contact-email").value = "";
+  document.getElementById("contact-phone").value = "";
 }
 
 /**
@@ -202,116 +204,129 @@ function deleteValues() {
  * @returns {Promise<void>}
  */
 async function renderContacts(contacts) {
-	console.log(contacts);
-	
-	const contactListContainer = document.getElementById('contact-list');
+  console.log(contacts);
 
-	if (!contactListContainer) {
-		console.error("Error: Cannot find element with id 'contact-list' in the HTML.");
-		return;
-	}
+  const contactListContainer = document.getElementById("contact-list");
 
-	contactListContainer.innerHTML = '';
+  if (!contactListContainer) {
+    console.error(
+      "Error: Cannot find element with id 'contact-list' in the HTML."
+    );
+    return;
+  }
 
-	try {
-		contacts.sort((a, b) => a.name.localeCompare(b.name));
-	} catch (error) {
-		console.error('Failed to sort names:', error);
-	}
+  contactListContainer.innerHTML = "";
 
-	const usedLetters = new Set();
+  try {
+    contacts.sort((a, b) => a.name.localeCompare(b.name));
+  } catch (error) {
+    console.error("Failed to sort names:", error);
+  }
 
-	for (let i = 0; i < contacts.length; i++) {                              
-		const contact = contacts[i];
-		const id = contacts[i].id
-		const firstLetter = contact.name[0].toUpperCase();
+  const usedLetters = new Set();
 
-		if (!usedLetters.has(firstLetter)) {
-			contactListContainer.innerHTML += `
+  for (let i = 0; i < contacts.length; i++) {
+    const contact = contacts[i];
+    const id = contacts[i].id;
+    const firstLetter = contact.name[0].toUpperCase();
+
+    if (!usedLetters.has(firstLetter)) {
+      contactListContainer.innerHTML += `
             <div class="first-letter-header">
             <span class="firstletter">${firstLetter}</span>
             </div>
             `;
-			usedLetters.add(firstLetter);
-		}
+      usedLetters.add(firstLetter);
+    }
 
-		bgColor = assignColor(contact.name);
-		let nameFirstLetters = getnameFirstLetters(contact.name);
-		contactListContainer.innerHTML += contactTemplate(contact, i, bgColor, nameFirstLetters, id);
-	}
+    bgColor = assignColor(contact.name);
+    let nameFirstLetters = getnameFirstLetters(contact.name);
+    contactListContainer.innerHTML += contactTemplate(
+      contact,
+      i,
+      bgColor,
+      nameFirstLetters,
+      id
+    );
+  }
 }
 
 /**
  * Renders the contact information.
  * @param {number} index - The index of the contact.
  */
-function renderInfo(index, id) {	
-	currentContactIndex = index;
-	const infoContainer = document.getElementById('info-wrapper');
-	const displayContainer = document.getElementById('contacts-display-wrapper');
-	const sideBar = document.getElementById('contacts-sidebar-wrapper');
-	const contact = allContacts[index];
-	const bgColor = assignColor(contact.name);
-	const firstLetters = getnameFirstLetters(allContacts[index].name);
+function renderInfo(index, id) {
+  currentContactIndex = index;
+  const infoContainer = document.getElementById("info-wrapper");
+  const displayContainer = document.getElementById("contacts-display-wrapper");
+  const sideBar = document.getElementById("contacts-sidebar-wrapper");
+  const contact = allContacts[index];
+  const bgColor = assignColor(contact.name);
+  const firstLetters = getnameFirstLetters(allContacts[index].name);
 
-	infoContainer.innerHTML = '';
-	infoContainer.innerHTML = contactInfoTemplate(index, bgColor, firstLetters, id);
-	infoContainer.classList.remove('d-none');
-	infoContainer.classList.add('slide-from-right');
+  infoContainer.innerHTML = "";
+  infoContainer.innerHTML = contactInfoTemplate(
+    index,
+    bgColor,
+    firstLetters,
+    id
+  );
+  infoContainer.classList.remove("d-none");
+  infoContainer.classList.add("slide-from-right");
 
-	displayContainer.classList.remove('d-none');
+  displayContainer.classList.remove("d-none");
 
-	if (innerWidth <= 790) {
-		sideBar.style.display = 'none';
-		displayContainer.classList.add('d-block');
-	}
+  if (innerWidth <= 790) {
+    sideBar.style.display = "none";
+    displayContainer.classList.add("d-block");
+  }
 }
 
 /**
  * Closes the mobile view of contact information.
  */
 function closeMobileContact() {
-	const sideBar = document.getElementById('contacts-sidebar-wrapper');
-	const displayContainer = document.getElementById('contacts-display-wrapper');
+  const sideBar = document.getElementById("contacts-sidebar-wrapper");
+  const displayContainer = document.getElementById("contacts-display-wrapper");
 
-	displayContainer.style = 'display: none !important';
+  displayContainer.style = "display: none !important";
 
-	if (innerWidth <= 790) {
-		sideBar.style.display = 'flex';
-		displayContainer.classList.remove('d-block');
-	}
+  if (innerWidth <= 790) {
+    sideBar.style.display = "flex";
+    displayContainer.classList.remove("d-block");
+  }
 
-	setTimeout(() => {
-		displayContainer.style = 'display: none';
-	}, 500);
+  setTimeout(() => {
+    displayContainer.style = "display: none";
+  }, 500);
 }
 
 /**
  * Shows additional options in the mobile view.
  */
 function showMoreOptions() {
-	const options = document.getElementById('mobile-more-options');
+  const options = document.getElementById("mobile-more-options");
 
-	options.classList.remove('d-none');
-	options.classList.add('slide-from-right');
+  options.classList.remove("d-none");
+  options.classList.add("slide-from-right");
 
-	setTimeout(() => {
-		options.classList.remove('slide-from-right');
-	}, 500);
+  setTimeout(() => {
+    options.classList.remove("slide-from-right");
+  }, 500);
 }
 
 /**
  * Closes the additional options in the mobile view.
  */
 function closeMoreOptions() {
-	const options = document.getElementById('mobile-more-options');
+  const options = document.getElementById("mobile-more-options");
 
-	options.classList.add('slide-to-right');
+  options.classList.add("slide-to-right");
 
-	setTimeout(() => {
-		options.classList.remove('slide-to-right');
-		options.classList.add('d-none');
-	}, 200);
+  setTimeout(() => {
+    options.classList.remove("slide-to-right");
+    options.classList.add("d-none");
+  }, 200);
 }
 
 /**
@@ -320,14 +335,16 @@ function closeMoreOptions() {
  * @returns {string} - The first letters of the contact's name.
  */
 function getnameFirstLetters(name) {
-	let splittedName = name.split(' ');
-	let firstLetters = name[0].charAt(0).toUpperCase();
+  let splittedName = name.split(" ");
+  let firstLetters = name[0].charAt(0).toUpperCase();
 
-	if (splittedName[1]) {
-		firstLetters = splittedName[0].charAt(0).toUpperCase() + splittedName[1].charAt(0).toUpperCase();
-	}
+  if (splittedName[1]) {
+    firstLetters =
+      splittedName[0].charAt(0).toUpperCase() +
+      splittedName[1].charAt(0).toUpperCase();
+  }
 
-	return firstLetters;
+  return firstLetters;
 }
 
 /**
@@ -336,19 +353,19 @@ function getnameFirstLetters(name) {
  * @returns {Promise<void>}
  */
 async function deleteSingleContact(index, id) {
-	const content = document.getElementById('info-wrapper');
-	if(allContacts[index].userId){
-		await deleteUser(allContacts[index].id);
-	}
-	unassignFromTasks(allContacts[index].id);
-	allContacts.splice(index, 1);
-	await deleteContact(id)
-	// await saveContacts(allContacts);
-	content.innerHTML = '';
-	renderContacts(allContacts);	
-	closeEditContact();
-	closeDeleteConfirmation();
-	showToast('Contact deleted.');
+  const content = document.getElementById("info-wrapper");
+  if (allContacts[index].userId) {
+    await deleteUser(allContacts[index].id);
+  }
+  unassignFromTasks(allContacts[index].id);
+  allContacts.splice(index, 1);
+  await deleteContact(id);
+  // await saveContacts(allContacts);
+  content.innerHTML = "";
+  renderContacts(allContacts);
+  closeEditContact();
+  closeDeleteConfirmation();
+  showToast("Contact deleted.");
 }
 
 /**
@@ -358,69 +375,71 @@ async function deleteSingleContact(index, id) {
  * @returns {Promise<void>}
  */
 async function updateContact(event, index, id) {
-	debugger
-	event.preventDefault();
+  debugger;
+  event.preventDefault();
 
-	const updatedName = document.getElementById('edit-contact-name').value;
-	const updatedEmail = document.getElementById('edit-contact-email').value;
-	const updatedPhone = document.getElementById('edit-contact-phone').value;
+  const updatedName = document.getElementById("edit-contact-name").value;
+  const updatedEmail = document.getElementById("edit-contact-email").value;
+  const updatedPhone = document.getElementById("edit-contact-phone").value;
 
-	if (allContacts[index].userId) {
-		await updateUser(allContacts[index].userId, updatedName, updatedEmail, updatedPhone);
-	}
+  if (allContacts[index].userId) {
+    await updateUser(
+      allContacts[index].userId,
+      updatedName,
+      updatedEmail,
+      updatedPhone
+    );
+  }
 
-	const contact = {
-		name: updatedName,
-		email: updatedEmail,
-		phone: updatedPhone,
-	};
+  const contact = {
+    name: updatedName,
+    email: updatedEmail,
+    phone: updatedPhone,
+  };
 
-	allContacts[index].name = updatedName;
-	allContacts[index].email = updatedEmail;
-	allContacts[index].phone = updatedPhone;
-	await updateSingleContact(id, contact)
-	renderContacts(allContacts);
-	renderInfo(currentContactIndex);
-	closeEditContact();
-	closeDeleteConfirmation();
-	showToast('Contact edited.');
+  allContacts[index].name = updatedName;
+  allContacts[index].email = updatedEmail;
+  allContacts[index].phone = updatedPhone;
+  await updateSingleContact(id, contact);
+  renderContacts(allContacts);
+  renderInfo(currentContactIndex);
+  closeEditContact();
+  closeDeleteConfirmation();
+  showToast("Contact edited.");
 }
 
+function showDeleteConfirmation(index, id) {
+  let background = document.getElementById("delete-confirmation-bg");
+  let content = document.getElementById("delete-confirmation");
 
-function showDeleteConfirmation(index, id) {	
-	let background = document.getElementById('delete-confirmation-bg');
-	let content = document.getElementById('delete-confirmation')
+  background.classList.remove("d-none");
+  background.classList.add("fade-in");
+  content.classList.remove("d-none");
 
-	background.classList.remove('d-none');
-	background.classList.add('fade-in');
-	content.classList.remove('d-none');
+  if (innerWidth <= 790) {
+    content.classList.add("slide-from-bottom");
+  }
 
-	if(innerWidth <= 790){
-		content.classList.add('slide-from-bottom')
-	}
+  setTimeout(() => {
+    content.classList.remove("slide-from-bottom");
+    background.classList.remove("fade-in");
+  }, 300);
 
-	setTimeout(() => {
-		content.classList.remove('slide-from-bottom');
-		background.classList.remove('fade-in');
-	}, 300);
-
-	content.innerHTML = '';
-	content.innerHTML += deleteConfirmationTemplate(index, id);
-
+  content.innerHTML = "";
+  content.innerHTML += deleteConfirmationTemplate(index, id);
 }
-
 
 function closeDeleteConfirmation() {
-	let background = document.getElementById('delete-confirmation-bg');
-	let content = document.getElementById('delete-confirmation')
+  let background = document.getElementById("delete-confirmation-bg");
+  let content = document.getElementById("delete-confirmation");
 
-	background.classList.add('fade-out');	
-	content.classList.add('d-none');
+  background.classList.add("fade-out");
+  content.classList.add("d-none");
 
-	setTimeout(() => {
-		background.classList.remove('fade-out');
-		background.classList.add('d-none');		
-	}, 200);
+  setTimeout(() => {
+    background.classList.remove("fade-out");
+    background.classList.add("d-none");
+  }, 200);
 }
 
 /**
@@ -431,12 +450,12 @@ function closeDeleteConfirmation() {
  * @returns {Promise<void>}
  */
 async function updateUser(userId, name, email) {
-	let users = await getUsers();
-	let user = users.find((user) => user.userId === userId);
+  let users = await getUsers();
+  let user = users.find((user) => user.userId === userId);
 
-	user.name = name;
-	user.email = email;
-	await saveUsers(users);
+  user.name = name;
+  user.email = email;
+  await saveUsers(users);
 }
 
 /**
@@ -445,11 +464,11 @@ async function updateUser(userId, name, email) {
  * @returns {Promise<void>}
  */
 async function deleteUser(userId) {
-	let users = await getUsers();
-	let userIndex = users.findIndex((user) => user.userId === userId);
+  let users = await getUsers();
+  let userIndex = users.findIndex((user) => user.userId === userId);
 
-	users.splice(userIndex, 1);
-	await saveUsers(users);
+  users.splice(userIndex, 1);
+  await saveUsers(users);
 }
 
 /**
@@ -458,12 +477,14 @@ async function deleteUser(userId) {
  * @returns {Promise<void>}
  */
 async function unassignFromTasks(id) {
-	let tasks = await getAllTasks();
-	tasks.forEach((task) => {
-		task.assigned_to = task.assigned_to.filter((assignee) => assignee.id !== id);
-	});
+  let tasks = await getAllTasks();
+  tasks.forEach((task) => {
+    task.assigned_to = task.assigned_to.filter(
+      (assignee) => assignee.id !== id
+    );
+  });
 
-	// await saveTasks(tasks);
+  // await saveTasks(tasks);
 }
 
 /**
@@ -471,5 +492,18 @@ async function unassignFromTasks(id) {
  * @param {Event} event - The event object.
  */
 function doNotClose(event) {
-	event.stopPropagation();
+  event.stopPropagation();
+}
+
+function showErrorContact(result) {
+  document.querySelector(".contact-phone-error").innerText = "";
+  document.querySelector(".contact-email-error").innerText = "";
+
+
+  if(result.message.phone) {
+    document.querySelector(".contact-phone-error").innerText = result.message.phone
+  }
+  if(result.message.email) {
+	document.querySelector(".contact-email-error").innerHTML = result.message.email
+  }
 }

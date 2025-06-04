@@ -40,7 +40,10 @@ async function saveSingleContact(newContact) {
       body: JSON.stringify(newContact),
     });
     if (!res.ok) {
-      throw new Error(`HTTP error! Status: ${res.status}`);
+      const errorData = await res.json();
+      console.log(errorData);
+      
+      return { status: "error", message: errorData };
     }
 
     const contact = await res.json();

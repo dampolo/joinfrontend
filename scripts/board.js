@@ -24,7 +24,6 @@ async function initBoard() {
   await init();
   setNavActive("board");
   boardTasks = await getAllTasks();
-  console.log("boardTasks: ", boardTasks);
   
   // contactsToAssigned = await getContacts();
   createAssignedTo();
@@ -153,10 +152,7 @@ async function changeTaskCategory(event) {
   currentTaskId = boardTasks[elementIndex].id
   
   // add new board category to Task 
-  currentTask.board = board
-  // boardTasks[elementIndex].board = category;
-  console.log(currentTask);
-  
+  currentTask.board = board  
   await updateTask(currentTaskId, { board: currentTask.board});
 
   renderBoard();

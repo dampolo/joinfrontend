@@ -65,7 +65,9 @@
 							<form onsubmit="addContact(); return false">
 								<input type="text" class="name-input" placeholder="Name" required id="contact-name" minlength="4" />
 								<input type="email" class="email-input" placeholder="Email" id="contact-email" required/>
+								<span class="contact-email-error"></span>	
 								<input type="tel" class="phone-input" placeholder="Phone" id="contact-phone" required pattern="[0-9+\s]{6,20}" oninvalid="this.setCustomValidity('Enter valid phone number e.g. +49 123 34533323. Minimum 6 digits, maximum 20 digits')" oninput="this.setCustomValidity('')" />
+								<span class="contact-phone-error"></span>	
 								<div class="new-contact-buttons-wrap">
 									<button class="button cancel outline hidden-on-mobile" onclick="closeCreateContact(); return false">
 										Cancel

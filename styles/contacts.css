@@ -280,6 +280,7 @@ form {
 	background-position: right;
 	background-position-x: 95%;
 	background-size: 24px;
+	margin-bottom: 32px;
 }
 
 .email-input {
@@ -298,8 +299,13 @@ form {
 	background-size: 20px;
 }
 
-input {
+.contact-email-error,
+.contact-phone-error {
+	color: var(--error);
 	margin-bottom: 32px;
+}
+
+input {
 	width: 100%;
 }
 

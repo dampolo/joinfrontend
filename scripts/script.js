@@ -96,7 +96,7 @@ function getLoggedUserInitials(name) {
   let initials = ""
   
   if(name.name !== "Guest") {
-    const firstName = name.username.charAt(0);
+    const firstName = name.username.charAt(0).toUpperCase();
     const lastName = name.last_name.charAt(0);
     initials = firstName + lastName
     return initials

@@ -203,6 +203,11 @@ input:focus {
 .has-error {
   color: var(--error);
 }
+
+.has-error {
+  list-style-type: none;
+}
+
 .input-wrapper.has-error + .error-message {
   opacity: 100%;
 }
