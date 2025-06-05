@@ -52,7 +52,7 @@ async function doLogIn() {
     }, 2500);
   } else {
     password.parentElement.classList.add("has-error");
-    errorMessage.innerText = result.message
+    errorMessage.innerText = "You are offline"
   }
 
   logInButton.disabled = false;

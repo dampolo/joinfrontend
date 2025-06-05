@@ -13,11 +13,13 @@ async function getUser(username, password) {
       const errorData = await res.json();
       return { status: "error", message: errorData.message[0] };
     }
-
     const user = await res.json();
     return { status: "success", user };
     
   } catch (error) {
+    console.log(error);
+    
+    debugger
     return { status: "error", message: error.message };
   }
 }

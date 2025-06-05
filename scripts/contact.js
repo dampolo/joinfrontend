@@ -149,8 +149,6 @@ async function addContact() {
   const result = await saveSingleContact(contact);
 
   if (result.status === "error") {
-    console.log("result: ", result);
-	debugger
 	showErrorContact(result)
   } else {
     closeCreateContact();
@@ -204,7 +202,6 @@ function deleteValues() {
  * @returns {Promise<void>}
  */
 async function renderContacts(contacts) {
-  console.log(contacts);
 
   const contactListContainer = document.getElementById("contact-list");
 
