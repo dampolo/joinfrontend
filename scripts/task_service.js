@@ -65,7 +65,6 @@ async function deleteTask(taskId) {
     return { status: "success" };
 
   } catch (error) {
-    console.error("Error deleting task:", error);
     return { status: "error", message: error.message };
   }
 }

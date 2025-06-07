@@ -152,7 +152,9 @@ function editFormTemplate(index, bgColor, firstLetters, id) {
                 <form onsubmit="updateContact(event, ${index}, ${id}); return false">
                     <input type="text" class="name-input" id="edit-contact-name" value="${allContacts[index].name}" required/>
                     <input type="email" class="email-input" id="edit-contact-email" value="${allContacts[index].email}" required/>
+                    <span class="edit-contact-email-error"></span>
                     <input type="tel" class="phone-input" id="edit-contact-phone" value="${allContacts[index].phone}" required pattern="[0-9+\s]{6,20}" oninvalid="this.setCustomValidity('Enter valid phone number e.g. +49 123 34533323. Minimum 6 digits, maximum 20 digits')" oninput="this.setCustomValidity('')"/>
+                    <span class="edit-contact-phone-error"></span>
                     <div class="edit-contact-buttons-wrap">
                         <button class="button cancel outline" onclick="showDeleteConfirmation(${index}, ${id}); return false">
                             Delete

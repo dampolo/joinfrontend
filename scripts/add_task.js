@@ -15,7 +15,6 @@ async function initAddTask() {
   setNavActive("add-task");
   allTasks = await getAllTasks();
   contactsToAssigned = await getAllContacts();
-  console.log("contactsToAssigned: ", contactsToAssigned);
   
   createAssignedTo();  
   getCategoryFromUrl();
@@ -168,11 +167,9 @@ async function addTaskCreateTask() {
     subtasks: [],
   };
 
-  console.log(newTask);
   
   tasks.push(newTask);
   addGlobalSubtasksToTask(tasks.length - 1, globalSubtasks, tasks);
-  console.log(newTask);
   
   await saveTask(newTask);
   addTaskClearFormularReset();

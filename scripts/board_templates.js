@@ -15,7 +15,6 @@ function noTasksTemplate(message) {
  * @returns {string} HTML template for task card.
  */
 function taskCardTemplate(index, task, draggable) {
-  // console.log(task.id);
   
   return `
     <div id="task-card-${index}" class="task-card draggable" data-draggable draggable="${draggable}" ondragstart="dragStart(event, this)" data-index="${index}" ondragend="dragEnd(this)" onclick="openTaskDialog('task-dialog', ${index}, ${task.id})">

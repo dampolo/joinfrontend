@@ -17,9 +17,7 @@ async function getUser(username, password) {
     return { status: "success", user };
     
   } catch (error) {
-    console.log(error);
     
-    debugger
     return { status: "error", message: error.message };
   }
 }
@@ -36,7 +34,6 @@ async function saveUsers(userData) {
     });
     if (!res.ok) {
       const errorData = await res.json();
-      console.log(errorData);
       
       return { status: "error", message: errorData };
     }
@@ -55,7 +52,6 @@ async function saveUsers(userData) {
  * @param {Object} user - The user object to be saved.
  */
 function saveUserToLocalStorage(user) {
-  // console.log(user);
   
   localStorage.setItem("token", JSON.stringify(user));
 }

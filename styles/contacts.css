@@ -299,6 +299,8 @@ form {
 	background-size: 20px;
 }
 
+.edit-contact-email-error,
+.edit-contact-phone-error,
 .contact-email-error,
 .contact-phone-error {
 	color: var(--error);

@@ -133,7 +133,6 @@ async function toggleSubtaskState(index) {
   const taskIndex = currentDialog.getAttribute("data-task-index");
 
   const taskId = currentDialog.getAttribute("data-task-id");
-  // debugger
   const subtaskIndex = index;
   const currentState = boardTasks[taskIndex].subtasks[subtaskIndex].completed;
   
@@ -277,7 +276,6 @@ function editTaskAssignedTo() {
   const checkBoxes = document.querySelectorAll(".add-task-checkbox-edit");  
   newTask.assigned_to = [];
   assignedToId = [];
-  console.log(checkBoxes);
   
 
   for (let i = 0; i < checkBoxes.length; i++) {    
@@ -426,7 +424,6 @@ function editAddTaskSubtasks(event) {
   const subtaskValue = subtasks.value.trim();
 
   if (!subtaskValue) return;
-debugger
   newTask.subtasks.unshift({ completed: false, description: subtaskValue });
   editSubtasksList.unshift({ completed: false, description: subtaskValue });
   editAddTaskSubtasksList(); //Create the element from Subtasks input

@@ -194,6 +194,8 @@ function deleteValues() {
   document.getElementById("contact-name").value = "";
   document.getElementById("contact-email").value = "";
   document.getElementById("contact-phone").value = "";
+  document.querySelector(".contact-phone-error").innerText = "";
+  document.querySelector(".contact-email-error").innerText = "";
 }
 
 /**
@@ -372,7 +374,6 @@ async function deleteSingleContact(index, id) {
  * @returns {Promise<void>}
  */
 async function updateContact(event, index, id) {
-  debugger;
   event.preventDefault();
 
   const updatedName = document.getElementById("edit-contact-name").value;
@@ -397,12 +398,18 @@ async function updateContact(event, index, id) {
   allContacts[index].name = updatedName;
   allContacts[index].email = updatedEmail;
   allContacts[index].phone = updatedPhone;
-  await updateSingleContact(id, contact);
+  const result = await updateSingleContact(id, contact);
+
+  if (result.status === "error") {
+	  showErrorEditContact(result)
+
+  } else {
+    renderInfo(currentContactIndex);
+    closeEditContact();
+    closeDeleteConfirmation();
+    showToast("Contact edited.");
+  }
   renderContacts(allContacts);
-  renderInfo(currentContactIndex);
-  closeEditContact();
-  closeDeleteConfirmation();
-  showToast("Contact edited.");
 }
 
 function showDeleteConfirmation(index, id) {
@@ -495,12 +502,24 @@ function doNotClose(event) {
 function showErrorContact(result) {
   document.querySelector(".contact-phone-error").innerText = "";
   document.querySelector(".contact-email-error").innerText = "";
+  
+  if(result.message.phone) {
+    document.querySelector(".contact-phone-error").innerText = result.message.phone  
+  }
+  if(result.message.email) {
+	  document.querySelector(".contact-email-error").innerHTML = result.message.email
+}
+}
+
+function showErrorEditContact(result) {
+  document.querySelector(".edit-contact-phone-error").innerText = "";
+  document.querySelector(".edit-contact-email-error").innerText = "";
 
 
   if(result.message.phone) {
-    document.querySelector(".contact-phone-error").innerText = result.message.phone
+    document.querySelector(".edit-contact-phone-error").innerText = result.message.phone
   }
   if(result.message.email) {
-	document.querySelector(".contact-email-error").innerHTML = result.message.email
-  }
+	  document.querySelector(".edit-contact-email-error").innerHTML = result.message.email
+}
 }

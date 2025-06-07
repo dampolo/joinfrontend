@@ -60,7 +60,6 @@ function renderBoard(tasks) {
  * @returns {string} HTML string representing the tasks.
  */
 function renderTasks(tasks) {
-  // console.log(tasks);
   
   let html = "";
 
@@ -166,7 +165,6 @@ async function changeTaskCategory(event) {
  */
 async function changeTaskCategoryOnMobile(event, index, category) {
   event.stopPropagation();
-  debugger
   boardTasks[index].boardCategory = category;
   await saveTasks(boardTasks);
   renderBoard();

@@ -5,7 +5,6 @@ function editTaskMinimumDate() {
 
 
 function editTaskRenderAssignedToHtml(id, bgColor, contact, assigned) {
-  // debugger
   return /*html*/ `
   <li>
     <label for="person${id}">

@@ -18,15 +18,26 @@ async function getSingleContacts(userId) {
   return user;
 }
 
-async function updateSingleContact(id, payload) {  
+async function updateSingleContact(id, payload) { 
   const url = `${API_URL}/api/users/${id}/`;
-  return fetch(url, {
-    method: "PATCH",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify( payload ),
-  });
+  try {
+    const res = await fetch(url, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(payload),
+    });
+    if (!res.ok) {
+      const errorData = await res.json();
+      
+      return { status: "error", message: errorData };
+    }
+    return { status: "success"};
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    return { status: "error", message: error.message };
+  }
 }
 
 async function saveSingleContact(newContact) {
@@ -41,7 +52,6 @@ async function saveSingleContact(newContact) {
     });
     if (!res.ok) {
       const errorData = await res.json();
-      console.log(errorData);
       
       return { status: "error", message: errorData };
     }
