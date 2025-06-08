@@ -18,7 +18,7 @@ async function getUser(username, password) {
     
   } catch (error) {
     
-    return { status: "error", message: "You are offline" };
+    return { status: "error", message: "You are offline." };
   }
 }
 

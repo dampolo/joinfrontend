@@ -142,13 +142,13 @@ function hideDropZone(event, element) {
 async function changeTaskCategory(event) {
   event.preventDefault();
   
-  let elementIndex = event.dataTransfer.getData("elementIndex");
-  let targetElement = event.currentTarget;
-  let board = targetElement.attributes["data-category"].value;
+  const elementIndex = event.dataTransfer.getData("elementIndex");
+  const targetElement = event.currentTarget;
+  const board = targetElement.attributes["data-category"].value;
   
   hideDropZone(event, targetElement);
-  currentTask = boardTasks[elementIndex]
-  currentTaskId = boardTasks[elementIndex].id
+  const currentTask = boardTasks[elementIndex]
+  const currentTaskId = boardTasks[elementIndex].id
   
   // add new board category to Task 
   currentTask.board = board  
@@ -165,8 +165,10 @@ async function changeTaskCategory(event) {
  */
 async function changeTaskCategoryOnMobile(event, index, category) {
   event.stopPropagation();
-  boardTasks[index].boardCategory = category;
-  await saveTasks(boardTasks);
+  const currentTaskId = boardTasks[index].id;
+  let currentTask = boardTasks[index];
+  currentTask.board = category;
+  await updateTask(currentTaskId, { board: category});
   renderBoard();
 }
 
