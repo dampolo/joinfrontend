@@ -81,9 +81,8 @@ async function logInAsGuest() {
     });
 
     const result = await response.json();
-
+    debugger
     if (response.ok && result.token) {
-      // Normalize to match your current structure
       const guestUser = {
         token: result.token,
         id: result.id,
@@ -103,7 +102,6 @@ async function logInAsGuest() {
     }
 
   } catch (error) {
-    // console.error("Guest login error:", error);
     showToast("Guest login failed due to a network error.");
   }
 
