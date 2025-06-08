@@ -81,7 +81,6 @@ async function logInAsGuest() {
     });
 
     const result = await response.json();
-    debugger
     if (response.ok && result.token) {
       const guestUser = {
         token: result.token,
