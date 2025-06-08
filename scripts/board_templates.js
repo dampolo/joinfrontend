@@ -40,7 +40,7 @@ function taskCardTemplate(index, task, draggable) {
         <div class="meta">
           ${taskCardAssigneesTemplate(task.assigned_to)}
           <div class="priority">
-            <img src="assets/icons/priority=${task.priority}.svg" alt="${task.priority}" />
+            <img src="./assets/icons/priority=${task.priority.toLowerCase()}.svg" alt="${task.priority}" />
           </div>
         </div>
       </div>

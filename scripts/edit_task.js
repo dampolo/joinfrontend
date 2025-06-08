@@ -81,7 +81,7 @@ function renderTaskDueDate(date) {
  */
 function renderTaskPriority(priority) {
   const dialogPriorytyElement = document.getElementById("dialog-show-priority");
-  dialogPriorytyElement.innerHTML = `${priority} <img src="assets/icons/priority=${priority}.svg" />`;
+  dialogPriorytyElement.innerHTML = `${priority} <img src="assets/icons/priority=${priority.toLowerCase()}.svg" />`;
 }
 
 /**
