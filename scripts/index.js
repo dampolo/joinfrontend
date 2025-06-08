@@ -66,12 +66,45 @@ async function doLogIn() {
  * @returns {Promise<void>}
  */
 async function logInAsGuest() {
+  const url = `${API_URL}/auth/guest-login/`;
   logInButton.disabled = true;
-  if (await logIn("Guest", "GastGast2025!")) {
-    showToast("You have been logged in successfully.");
-    setTimeout(() => {
-      window.location.href = "summary.html";
-    }, 2500);
+
+  try {
+    // Log out if already logged in
+    if (isLoggedIn()) logOut();
+
+    const response = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      }
+    });
+
+    const result = await response.json();
+
+    if (response.ok && result.token) {
+      // Normalize to match your current structure
+      const guestUser = {
+        token: result.token,
+        id: result.id,
+        username: result.username,
+        email: result.email,
+        is_guest: result.is_guest || true
+      };
+
+      saveUserToLocalStorage(guestUser);
+      showToast("You have been logged in successfully.");
+
+      setTimeout(() => {
+        window.location.href = "summary.html";
+      }, 2500);
+    } else {
+      showToast("Guest login failed.");
+    }
+
+  } catch (error) {
+    // console.error("Guest login error:", error);
+    showToast("Guest login failed due to a network error.");
   }
 
   logInButton.disabled = false;
