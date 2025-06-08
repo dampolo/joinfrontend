@@ -75,7 +75,7 @@ async function logIn(username, password) {
   
   const result = await getUser(username, password);
   if (result.status === "success") {
-    saveUserToLocalStorage(result.user);
+    saveUserToLocalStorage(result.user);    
     return result;
   } else
     return result

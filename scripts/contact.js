@@ -21,7 +21,6 @@ async function contactInit() {
   setNavActive("contacts");
 
   allContacts = await getAllContacts();
-
   renderContacts(allContacts);
 }
 
@@ -204,7 +203,6 @@ function deleteValues() {
  * @returns {Promise<void>}
  */
 async function renderContacts(contacts) {
-
   const contactListContainer = document.getElementById("contact-list");
 
   if (!contactListContainer) {

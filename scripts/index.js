@@ -37,13 +37,13 @@ function animateBackdrop() {
  * @returns {Promise<void>}
  */
 async function doLogIn() {
-  const email = document.getElementById("name");
+  const name = document.getElementById("name");
   const password = document.getElementById("password");
   const logInButton = document.getElementById("logInButton");
   const errorMessage = document.querySelector(".error-message")
 
   logInButton.disabled = true;
-  const result = await logIn(email.value, password.value);
+  const result = await logIn(name.value, password.value);
   if (result.status === "success") {
     password.parentElement.classList.remove("has-error");
     showToast("You have been logged in successfully.");
