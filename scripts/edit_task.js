@@ -585,10 +585,10 @@ function confirmTaskSubtasksListInBoard(i, event) {
   if (event.type === "keypress" && event.key !== "Enter") return;
   const subtasks = document.getElementById("edit-task-subtasks-input-edit");
   const subtaskValue = subtasks.value.trim();
-  
+  const currentSubtask = editSubtasksList[i]
   if (!subtaskValue) return;
   
-  const subtaskValueObject = { completed: false, description: subtaskValue }
+  const subtaskValueObject = { completed: currentSubtask.completed, description: subtaskValue }
  
   editSubtasksList.splice(i, 1, subtaskValueObject);
   newTask.subtasks.splice(i, 1, subtaskValueObject);
