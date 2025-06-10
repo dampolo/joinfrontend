@@ -3,7 +3,7 @@ let allTasks = [];
 let globalPrio = "MEDIUM";
 let globalCategory = "";
 let globalSubtasks = [];
-let subtasksList = [];
+// let subtasksList = [];
 let assignedContacts = [];
 let assignedContactsId = []
 let contactsToAssigned = [];
@@ -141,7 +141,7 @@ function addTaskSubtasks(event) {
   if (!subtaskValue) return;
 
   globalSubtasks.unshift(subtaskValue);
-  subtasksList.unshift(subtaskValue);
+  // subtasksList.unshift(subtaskValue);
   addTaskSubtasksList(); //Create the element from Subtasks input
   document.getElementById("add-task-subtasks-icon-plus").classList.remove("d-none");
   document.getElementById("add-task-subtasks-icon-plus-check").classList.add("d-none");
@@ -155,7 +155,6 @@ function addTaskSubtasks(event) {
  */
 async function addTaskCreateTask() {
   let tasks = await getAllTasks();
-
   const newTask = {
     board: globalBoardCategory,
     title: addTaskTitle(),

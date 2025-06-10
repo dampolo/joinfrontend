@@ -52,8 +52,8 @@ function addTaskAssignedToUnCheck() {
 function addTaskSubtasksList() {
   const lists = document.getElementById("add-task-subtasks-list");
   lists.innerHTML = "";
-  for (let i = 0; i < subtasksList.length; i++) {
-    const element = subtasksList[i];
+  for (let i = 0; i < globalSubtasks.length; i++) {
+    const element = globalSubtasks[i];
     lists.innerHTML += /*html*/ `   
                    <li>
                  <span class="add-task-subtasks-extra-task" id="add-task-subtasks-extra-task">${element}</span> 
@@ -73,7 +73,7 @@ function addTaskSubtasksList() {
  */
 function removeFromAddTaskSubtasksList(i, event) {
   event.stopPropagation()
-  subtasksList.splice(i, 1);
+  // subtasksList.splice(i, 1);
   globalSubtasks.splice(i, 1);
   addTaskSubtasksList();
 }
@@ -83,8 +83,8 @@ function editTaskSubtasksList(param, event) {
   const ulElement = document.getElementById("add-task-subtasks-list");
   ulElement.innerHTML = "";
 
-  for (let i = 0; i < subtasksList.length; i++) {
-    const lists = subtasksList[i];
+  for (let i = 0; i < globalSubtasks.length; i++) {
+    const lists = globalSubtasks[i];
 
     if (i === param) {
       let liElement = document.createElement("li");
@@ -177,10 +177,9 @@ function confirmTaskSubtasksList(i, event) {
   event.preventDefault()
   const subtasks = document.getElementById("add-task-subtasks-input-edit");
   const subtaskValue = subtasks.value.trim();
-
   if (!subtaskValue) return;
 
-  subtasksList.splice(i, 1, subtaskValue);
+  globalSubtasks.splice(i, 1, subtaskValue);
   addTaskSubtasksList();
 }
 
@@ -221,7 +220,7 @@ function clearSubtasks(event) {
  */
 function addTaskClearFormularReset() {
   globalSubtasks = [];
-  subtasksList = [];
+  // subtasksList = [];
   document.getElementById("add-task-title-input").value = "";
   document.getElementById("add-task-textarea").value = "";
   addTaskAssignedToUnCheck();

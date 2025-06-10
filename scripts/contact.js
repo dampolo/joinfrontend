@@ -238,6 +238,7 @@ async function renderContacts(contacts) {
 
     bgColor = assignColor(contact.name);
     let nameFirstLetters = getnameFirstLetters(contact.name);
+    debugger
     contactListContainer.innerHTML += contactTemplate(
       contact,
       i,

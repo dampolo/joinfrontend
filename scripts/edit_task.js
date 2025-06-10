@@ -141,16 +141,15 @@ async function toggleSubtaskState(index) {
   } else {
     boardTasks[taskIndex].subtasks[subtaskIndex].completed = true;
   }
-
   const taskForUpdate = {
     ...boardTasks[taskIndex],
     assigned_to: boardTasks[taskIndex].assigned_to.map(user => user.id),
     subtasks: boardTasks[taskIndex].subtasks.map(subtask => ({
+      id: subtask.id,
       completed: subtask.completed,
       description: subtask.description,
     })),
   };
-    
   await updateTask(taskId, taskForUpdate);
   renderBoard(boardTasks);
 }
@@ -609,6 +608,7 @@ async function saveEditTask() {
   saveEditTaskDescription();
   saveEditTaskDueDate();
   
+  // debugger
   boardTasks[currentIndex] = newTask;
   const taskForUpdate = {
     ...boardTasks[taskIndex],

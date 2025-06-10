@@ -9,8 +9,7 @@
  */
 function contactTemplate(contact, i, color, firstLetters, id) {
     const loggedInUser = getLoggedInUser().username
-    const firstName = contact.name.toLowerCase().split(" ")[0];
-    
+    const firstName = contact.name.split(" ")[0];
     return /*html*/ `
     <div class="contact-wrap" tabindex="${i}" onclick="renderInfo(${i}, ${id})">
         <div class="avatar accent-1" style="background-color: ${color}" id="background${i}">${firstLetters}</div>
