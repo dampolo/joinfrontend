@@ -238,7 +238,6 @@ async function renderContacts(contacts) {
 
     bgColor = assignColor(contact.name);
     let nameFirstLetters = getnameFirstLetters(contact.name);
-    debugger
     contactListContainer.innerHTML += contactTemplate(
       contact,
       i,
@@ -358,7 +357,6 @@ async function deleteSingleContact(index, id) {
   unassignFromTasks(allContacts[index].id);
   allContacts.splice(index, 1);
   await deleteContact(id);
-  // await saveContacts(allContacts);
   content.innerHTML = "";
   renderContacts(allContacts);
   closeEditContact();

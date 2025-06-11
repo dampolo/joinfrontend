@@ -587,7 +587,7 @@ function confirmTaskSubtasksListInBoard(i, event) {
   const currentSubtask = editSubtasksList[i]
   if (!subtaskValue) return;
   
-  const subtaskValueObject = { completed: currentSubtask.completed, description: subtaskValue }
+  const subtaskValueObject = { id:currentSubtask.id, completed: currentSubtask.completed, description: subtaskValue }
  
   editSubtasksList.splice(i, 1, subtaskValueObject);
   newTask.subtasks.splice(i, 1, subtaskValueObject);
@@ -610,10 +610,12 @@ async function saveEditTask() {
   
   // debugger
   boardTasks[currentIndex] = newTask;
+  debugger
   const taskForUpdate = {
     ...boardTasks[taskIndex],
     assigned_to: boardTasks[taskIndex].assigned_to.map(user => user.id),
     subtasks: boardTasks[taskIndex].subtasks.map(subtask => ({
+      id: subtask.id,
       completed: subtask.completed,
       description: subtask.description,
     })),
