@@ -52,7 +52,7 @@ async function saveUsers(userData) {
  * @param {Object} user - The user object to be saved.
  */
 function saveUserToLocalStorage(user) {
-  console.log(user);
+  // console.log if you want, you will see what is in user;
   
   localStorage.setItem("token", JSON.stringify(user));
 }
